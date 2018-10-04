@@ -1,0 +1,20 @@
+.progressCircle {
+    width: 30%;
+    margin-left: 35%;
+}
+
+.CircularProgressbar.inverted .CircularProgressbar-background {
+    fill: #006680;
+}
+
+.CircularProgressbar.inverted .CircularProgressbar-text {
+    fill: #fff;
+}
+
+.CircularProgressbar.inverted .CircularProgressbar-path {
+    stroke: #fff;
+}
+
+.CircularProgressbar.inverted .CircularProgressbar-trail {
+    stroke: transparent;
+}

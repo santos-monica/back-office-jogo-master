@@ -1,0 +1,31 @@
+.inputBuscarPerguntas {
+    background-color: transparent;
+    font-size: 20px;
+    padding-bottom: 20px;
+    padding-top: 20px;
+    outline: none;
+    box-shadow: none !important;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-radius: 0;
+    border-bottom: 1.5px solid #efeded;
+    font-family: OpenSans;
+}
+
+.inputBuscarPerguntas:focus {
+    border-color: #3D9970;
+    background-color: transparent;
+}
+
+.inputBuscarPerguntas::-moz-placeholder {
+    color: #3D9970;
+}
+
+.inputBuscarPerguntas:-ms-input-placeholder {
+    color: #3D9970;
+}
+
+.inputBuscarPerguntas::-webkit-input-placeholder {
+    color: #3D9970;
+}

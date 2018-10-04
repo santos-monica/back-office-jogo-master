@@ -1,0 +1,73 @@
+.marginTableList {
+    margin: 10px 50px;
+    text-align: left;
+}
+
+.theadProperties {
+    background-color: #3D9970;
+    color: white;
+    font-family: OpenSans;
+    text-align: center;
+}
+
+table.table-bordered>thead>tr>th {
+    border: 1px solid #d6d6c2;
+    /* box-shadow: 1px 1px 1px 0.70 #555353; */
+}
+
+table.table-bordered>tbody>tr>td {
+    border: 1px solid #d6d6c2;
+    box-shadow: 1px 1px 1px #cec6c6;
+    font-family: OpenSans;
+    font-size: 13px;
+    word-wrap: break-word;
+    max-width: 30em;
+}
+
+.listItemEdit {
+    font-size: 24px;
+    color: #3D9970;
+}
+
+.listItemRemove {
+    font-size: 26px;
+    color: #3D9970;
+}
+
+.listItemEdit.btn.btn-link {
+    text-decoration: none;
+}
+
+.listItemRemove.btn.btn-link {
+    text-decoration: none;
+}
+
+.listItemEdit:hover {
+    text-decoration: none;
+    color: #ffd714;
+}
+
+.listItemRemove:hover {
+    text-decoration: none;
+    color: #db371e;
+}
+
+.paginationDiscovery .pagination .page-item .page-link {
+    border: 1px solid #d6d6c2;
+    box-shadow: 1px 1px 1px #cec6c6;
+    background-color: #f9f9f9;
+    font-family: OpenSans;
+    color: #336699;
+}
+
+.listNotFound{
+
+    font-family: OpenSans;
+    color: gray;
+    text-align: center;
+}
+
+.spinnerFlow{
+    position: absolute;
+    margin-top: 400px;
+}

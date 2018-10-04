@@ -1,0 +1,19 @@
+@font-face {
+    font-family: RobotoBold;
+    src: url('../fonts/roboto/Roboto-Bold.woff');
+}
+
+@font-face {
+    font-family: OpenSans;
+    src: url('../fonts/open-sans/OpenSans-Regular.WOFF');
+}
+
+@font-face {
+    font-family: OpenSansLight;
+    src: url('../fonts/open-sans/OpenSans-Light.WOFF');
+}
+
+@font-face {
+    font-family: OpenSansBold;
+    src: url('../fonts/open-sans/OpenSans-Bold.WOFF');
+}

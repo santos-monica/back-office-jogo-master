@@ -1,0 +1,117 @@
+.lblkmpageTitle {
+    font-family: OpenSansLight;
+    color: #444444;
+    font-size: 32px;
+}
+
+.lblkmLoginTitle {
+    font-family: OpenSans;
+    font-size: 15px;
+    color: #444444;
+}
+
+.gridLogin {
+    border: 1px solid #e5e7ea;
+    width: auto;
+    padding-left: 50px;
+    padding-right: 50px;
+    box-shadow: 1px 2px 5px 5px #c0c0c0;
+    border-radius: 40px;
+}
+
+.puzzle {
+    width: 140px;
+    height: 140px;
+    margin-top: -26px;
+    margin-bottom: 5px;
+    background: transparent;
+}
+
+.puzzle {
+    width: 140px;
+    height: 70px;
+    margin-top: -25px;
+}
+
+.inputLogin {
+    font-family: OpenSans;
+    border-radius: 1%;
+    font-size: 10px;
+}
+
+.inputLoginField:focus {
+    border-color: #203b56;
+    box-shadow: none;
+    background-color: transparent;
+}
+
+.inputLoginField {
+    font-size: 15px;
+    border: none;
+    background: transparent;
+    border-bottom: 1.2px solid #6d6d6b;
+}
+
+.inputLogin .input-group-text {
+    background-color: transparent;
+    color: gray;
+    border: none;
+    font-size: 20px;
+}
+
+.inputSpanClear .input-group-text {
+    background-color: transparent;
+    color: #6d6d6b;
+}
+
+.inputSpanClear .input-group-text:hover {
+    color: #612112;
+    cursor: pointer;
+}
+
+.submitButton {
+    font-family: OpenSans;
+    margin-top: 5px;
+}
+
+.submitButton:hover {
+    background-color: #162b41;
+}
+
+.customLoginBackground {
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 85px;
+    background-color: red;
+    color: white;
+    text-align: center;
+    position: fixed;
+}
+
+.loginDivider {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    border: 2px solid #c7c8c9;
+    width: 300px;
+}
+
+.lblFooterTitle {
+    font-family: OpenSans;
+    font-size: 12px;
+    margin-top: -10px;
+}
+
+.spanLoading {
+    font-size: 50px;
+    position: absolute;
+    margin-top: -200px;
+    margin-left: -25px;
+    opacity: 1;
+    color: #162b41;
+}
+
+.overlay {
+    opacity: 0.2;
+}

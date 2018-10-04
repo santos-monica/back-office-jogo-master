@@ -1,0 +1,74 @@
+.btnEntendi {
+    background-color: white;
+    color: #58595b;
+    border-color: #58595b;
+    outline: none;
+    box-shadow: none;
+    font-weight: bold;
+}
+
+.btnEntendi:focus {
+    background-color: transparent;
+    outline: none;
+}
+
+.btnEntendi:hover {
+    background-color: #3D9970;
+    color: white;
+    border-color: #3D9970;
+}
+
+.btnCancelar {
+    background-color: #7c1111;
+    color: white;
+    border-color: #7c1111;
+    outline: none;
+    box-shadow: none;
+    font-weight: bold;
+    margin:5px;
+}
+
+.btnCancelar:focus {
+    background-color: #5a0707;
+    outline: none;
+}
+
+.btnCancelar:hover {
+    background-color: #5a0707;
+    color: white;
+    border-color: #5a0707;
+}
+
+.btnConfirmar{
+    background-color: #58595b;
+    color: white;
+    border-color: #58595b;
+    outline: none;
+    box-shadow: none;
+    font-weight: bold;
+}
+
+.btnConfirmar:focus {
+    background-color: #58595b;
+    outline: none;
+}
+
+.btnConfirmar:hover {
+    background-color: rgb(250, 164, 4);
+    color: white;
+    border-color: rgb(250, 164, 4);
+}
+
+.alertFont {
+    font-family: OpenSansLight;
+}
+
+.alertFont p {
+    font-size: 20px;
+    text-align: justify;
+}
+
+.btn:focus, .btn:active:focus, .btn.active:focus{
+    outline:none;
+    box-shadow:none;
+}

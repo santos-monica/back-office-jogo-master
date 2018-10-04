@@ -1,0 +1,26 @@
+.btnAddQuestion {
+    color: #9ddac7;
+    font-size: 35px;
+}
+
+.btnAddQuestion .btn.btn-link {
+    text-decoration: none;
+}
+
+.btnAddQuestion:hover {
+    text-decoration: none;
+    color: #378e36;
+}
+
+.btnVoltar {
+    float: left;
+    margin-top: 15px;
+    margin-left: 15px;
+    color: #c0bebe;
+}
+
+.btnVoltar:hover {
+    color: #006680;
+    cursor: pointer;
+    text-decoration: none;
+}

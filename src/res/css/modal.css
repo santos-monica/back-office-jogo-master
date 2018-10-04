@@ -1,0 +1,208 @@
+.modalBody {
+    background-color: #fcfcfc;
+    font-family: OpenSansLight;
+    
+}
+
+.spanEditTitle {
+    color: #cec6c6;
+}
+
+.spanSendFile {
+    color: #cec6c6;
+}
+
+.spanAddTitle {
+    color: #cec6c6;
+}
+
+.spanAddCondition {
+    color: #cec6c6;
+}
+
+.spanArgs {
+    color: #cec6c6;
+}
+
+.spanSort{
+    margin-left: 10px;
+    color:gray;
+    font-size: 18px;
+}
+
+.spanSort:hover{
+    color: #1b3c5e;
+    cursor: pointer;
+}
+
+.inputModal {
+    outline: none;
+    box-shadow: none !important;
+    font-family: OpenSans;
+}
+
+.inputModal:focus {
+    border: 1.5px solid #3D9970;
+}
+
+.inputModalOption select option {
+    color: grey;
+    outline: none;
+    box-shadow: none;
+    outline: 0;
+    border-color: black;
+}
+
+.btnCancel:hover {
+    background-color: #af0f0f;
+    border-color: #af0f0f;
+}
+
+.btnSave:hover {
+    background-color: green;
+    border-color: green;
+}
+
+.inputTextAreaDescricao {
+    resize: none;
+}
+
+.btnAddParameter {
+    color: #cec6c6;
+    font-size: 35px;
+    text-decoration: none;
+}
+
+.btnAddParameter.btn.btn-link {
+    text-decoration: none;
+}
+
+.btnAddParameter:hover {
+    text-decoration: none;
+    color: #f9a527;
+    text-decoration: none;
+}
+
+.btnRemoveParameter {
+    color: #a80808;
+}
+
+.btnRemoveParameter:hover {
+    color: #660a0a;
+    cursor: pointer;
+}
+
+.btnAddInstructionVariable {
+    color: #cec6c6;
+    font-size: 35px;
+}
+
+.btnAddInstructionVariable:hover {
+    color: #f9a527;
+    cursor: pointer;
+}
+
+.btnAddNewCondition {
+    color: #cec6c6;
+    font-size: 35px;
+}
+
+.btnAddNewCondition:hover {
+    color: #f9a527;
+    cursor: pointer;
+}
+
+.btnRemoveCondition {
+    color: #a80808;
+}
+
+.btnRemoveCondition:hover {
+    color: #660a0a;
+    cursor: pointer;
+}
+
+.btnRemoveVariable {
+    color: #a80808;
+}
+
+.btnRemoveVariable:hover {
+    color: #660a0a;
+    cursor: pointer;
+}
+
+.variableId.input-group-prepend .input-group-text {
+    background-color: #3D9970;
+    color: white;
+    cursor: pointer;
+}
+
+.customRadioStyle .custom-control-label::after {
+    background-color: #3D9970;
+    color: white;
+    border-radius: 100%;
+    outline: none;
+    box-shadow: none;
+}
+
+.campoObrigatorioText {
+    float: right;
+    font-size: 12px;
+    font-weight: bold;
+    font-family: OpenSans;
+}
+
+.spanCampoObrg {
+    color: #f9a527;
+}
+
+.checkBoxForm.input-group-text {
+    background-color: #f7f4f4;
+    border: 1px solid #c0bebe;
+}
+
+.spancheckBoxAfter {
+    color: green;
+    font-size: 18px;
+}
+
+.spancheckBoxBefore {
+    font-size: 18px;
+}
+
+.spanInformation {
+    color: orange;
+    font-size: 20px;
+}
+
+.spanInformation:hover {
+    cursor: pointer;
+    color: #1b3c5e;
+}
+
+.informationAlertProperties {
+    font-family: OpenSans;
+    text-align: justify;
+}
+
+.informationAlertBoldText {
+    font-weight: bold;
+}
+
+.btnInfoAlertClose {
+    background-color: #7e7e7e;
+    border-color: #979797;
+    font-size: 18px;
+    color: white;
+    font-family: OpenSans;
+}
+
+.btnInfoAlertClose:hover {
+    background-color: green;
+    border-color: green;
+}
+
+.btnInfoAlertClose:focus {
+    overflow: hidden;
+    outline: none;
+    box-shadow: none;
+}
