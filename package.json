@@ -1,0 +1,55 @@
+{
+  "name": "master-admin",
+  "version": "0.0.1",
+  "description": "Plataforma de administração para o jogo MASTER",
+  "scripts": {
+    "start": "cross-env PORT=3001 react-scripts start",
+    "build": "react-scripts build",
+    "test": "jest"
+  },
+  "keywords": [
+    "Electron",
+    "react"
+  ],
+  "devDependencies": {
+    "babel-core": "*",
+    "babel-jest": "*",
+    "babel-loader": "*",
+    "babel-polyfill": "*",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "*",
+    "babel-preset-stage-1": "*",
+    "cross-env": "*",
+    "enzyme": "*",
+    "eslint": "*",
+    "eslint-config-google": "*",
+    "extract-text-webpack-plugin": "^4.0.0-beta.0",
+    "jest": "*",
+    "react-addons-test-utils": "*",
+    "react-hot-loader": "*",
+    "react-scripts": "^1.1.4",
+    "react-test-renderer": "*",
+    "webpack": "^2.2.1",
+    "webpack-dev-server": "^2.4.1",
+    "webpack-node-externals": "^1.2.0"
+  },
+  "dependencies": {
+    "bootstrap": "*",
+    "font-awesome": "*",
+    "json-schema-traverse": "^0.4.1",
+    "react": "^16.4.0",
+    "react-circular-progressbar": "^0.8.0",
+    "react-dom": "^16.4.0",
+    "react-hot-loader": "*",
+    "react-notifications": "^1.4.3",
+    "react-redux": "*",
+    "react-router": "*",
+    "react-router-dom": "*",
+    "reactstrap": "*",
+    "redux": "*",
+    "redux-multi": "*",
+    "redux-thunk": "*",
+    "sweetalert2": "^7.21.1",
+    "sweetalert2-react-content": "^1.0.0"
+  }
+}
