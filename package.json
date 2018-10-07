@@ -41,6 +41,7 @@
     "react-circular-progressbar": "^0.8.0",
     "react-dom": "^16.4.0",
     "react-hot-loader": "*",
+    "react-inlinesvg": "^0.8.1",
     "react-notifications": "^1.4.3",
     "react-redux": "*",
     "react-router": "*",

@@ -75,8 +75,8 @@ class QuestionsList extends Component {
 			.map(([idx, question]) => {
 				return (
 					// <tr key={question.identifier}>
-					<tr key={question.identifier} hidden={!this.filterQuestions(this.state.searchRegex, [question.categoria, question.nivel, question.pergunta, question.respostas.toString()])}>
-					<td>{question.categoria}</td>
+					<tr key={question.identifier} hidden={!this.filterQuestions(this.state.searchRegex, [question.tema, question.nivel, question.pergunta, question.respostas.toString()])}>
+					<td>{question.tema}</td>
 					<td>{question.nivel}</td>
 					<td>{question.pergunta}</td>
 					<td>{question.respostas.toString().replace(/,/g, ', ')}</td>
@@ -91,8 +91,8 @@ class QuestionsList extends Component {
 			} 
 		}
 		
-		render() {
-			// if (this.props.menuSelection == "flows") {
+	render() {
+		if (this.props.menuSelection == "home") {
 			return (
 				<div>
 				{/* <div className={`marginTableList ${this.props.isFetchingCalls ? 'overlay' : ''}`}> */}
@@ -111,7 +111,7 @@ class QuestionsList extends Component {
 				<Table className='table-bordered'>
 					<thead className='theadProperties'>
 						<tr>
-							<th title='Categoria'>CATEGORIA</th>
+							<th title='Tema'>TEMA</th>
 							<th title='Nível'>NÍVEL</th>
 							<th title='Pergunta'>PERGUNTA</th>
 							<th title='Alternativas'>ALTERNATIVAS</th>
@@ -123,39 +123,44 @@ class QuestionsList extends Component {
 					</tbody>
 				</Table>
 				</div>
-				)
-			}
-			
-			handleInputSearchText(e) {
-				this.setState({ inputSearchText: e.target.value })
-				this.setState({ searchRegex: new RegExp(e.target.value.replace(/[-[\]/{}()*+?.\\^$|]/g, "\\$&"), "i") })
-			}
-			
-			clearSearch() {
-				this.setState({ inputSearchText: '' })
-				this.setState({ searchRegex: '' })
-			}
-			
-			filterQuestions(searchRegex, names) {
-				let ok = false;
-				for (let i = 0; i < names.length; i++) {
-					if (names[i].match(searchRegex)) {
-						ok = true;
-						break;
-					}
-				}
-				return ok;
-				
-			}
-			
-			
+			)
+		} else {
+			return (
+				<div></div>
+			)
 		}
+	}
+		
+	handleInputSearchText(e) {
+		this.setState({ inputSearchText: e.target.value })
+		this.setState({ searchRegex: new RegExp(e.target.value.replace(/[-[\]/{}()*+?.\\^$|]/g, "\\$&"), "i") })
+	}
+	
+	clearSearch() {
+		this.setState({ inputSearchText: '' })
+		this.setState({ searchRegex: '' })
+	}
+	
+	filterQuestions(searchRegex, names) {
+		let ok = false;
+		for (let i = 0; i < names.length; i++) {
+			if (names[i].match(searchRegex)) {
+				ok = true;
+				break;
+			}
+		}
+		return ok;
+		
+	}
+	
+	
+}
 		
 function mapStateToProps(state) {
 	return {
 		questions: state.questions.all,
 
-		// menuSelection: state.menuOptions.selectedOption,
+		menuSelection: state.menuOptions.selectedOption,
 		// isLoaded: state.flows.isLoaded,
 	};
 }

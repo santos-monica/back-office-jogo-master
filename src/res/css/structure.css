@@ -1,0 +1,39 @@
+.teste {
+    margin: 150px 30px;
+    display: inline-block;
+    font-size: 10em;
+    position: relative;
+    width: 28%;
+    text-align: center;
+    height: 2em;
+    padding: 0 10px;
+    box-shadow: 1px 1px 4px 0.70px rgb(212, 212, 212);
+    border-radius: 10px;
+    border: 1px solid #f0f0f0;
+}
+
+.teste:hover {
+    margin: 148px 30px;
+    display: inline-block;
+    font-size: 10em;
+    position: relative;
+    width: 28%;
+    height: 2em;
+    padding: 0 10px;
+    background: #f7f7f7;
+    box-shadow: 3px 3px 1px 0.70px rgb(212, 212, 212);
+    border-radius: 10px;
+    border: 1px solid #f0f0f0;
+}
+
+.iconBox {
+    display: inline-block;
+    padding: auto;
+    /* margin: 50px auto; */
+    color: #3D9970;
+}
+
+.labelIcon{
+    font-size: 20px;
+    text-align: center;
+}

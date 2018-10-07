@@ -1,7 +1,7 @@
 import { VIEW_QUESTION } from '../actions/questions_actions';
 
 const INITIAL_STATE = { 
-    categorias: [
+    temas: [
         "Filmes",
         "Séries",
         "Livros"

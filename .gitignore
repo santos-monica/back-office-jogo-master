@@ -1,0 +1,17 @@
+#directories
+bower_components
+node_modules
+dist
+app/build
+build
+
+#files
+*.tgz
+*.log
+
+#macos files
+*.DS_Store
+
+!libs/*
+
+# *.jsonx

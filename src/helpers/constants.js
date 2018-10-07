@@ -3,10 +3,11 @@
 //  * MENU OPTIONS
 //  */
 // export const INTEGRATIONS = 'integrations';
-export const FLOWS = 'flows';
+export const HOME = 'home';
 // export const POPS = 'pops';
 export const LOGIN = 'login';
 export const MENU = 'menu';
+export const CADASTRO = 'cadastro';
 
 // export const ADVISOR_URL = 'http://localhost:8081/claro-advisor-api';
 // // export const ADVISOR_URL = 'http://api-advisor.embratel.com.br/claro-advisor-api';

@@ -24,3 +24,7 @@
     cursor: pointer;
     text-decoration: none;
 }
+
+.btnBackward {
+    margin-top: 1em;
+}

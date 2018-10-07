@@ -4,7 +4,7 @@ const INITIAL_STATE = {
     all: [
         {
             identifier: 1,
-            categoria: 'Teste',
+            tema: 'Teste',
             nivel: 'Fácil',
             pergunta: 'Qual o nome da irmã mais velha da Leilah?',
             respostas: [
@@ -16,7 +16,7 @@ const INITIAL_STATE = {
         },
         {
             identifier: 2,
-            categoria: 'Outro Teste',
+            tema: 'Outro Teste',
             nivel: 'Dificil',
             pergunta: 'O que se comemora em 23 de outubro?',
             respostas: [
@@ -38,7 +38,7 @@ export default function (state = INITIAL_STATE, action) {
             let questions = state.all;
             let question = {
                 identifier: 1,
-                categoria: action.payload.categoria,
+                tema: action.payload.tema,
                 nivel: action.payload.nivel,
                 pergunta: action.payload.pergunta,
                 respostas: []
