@@ -39,6 +39,8 @@
     "json-schema-traverse": "^0.4.1",
     "react": "^16.4.0",
     "react-circular-progressbar": "^0.8.0",
+    "react-color": "^2.14.1",
+    "react-color-picker": "^4.0.2",
     "react-dom": "^16.4.0",
     "react-hot-loader": "*",
     "react-inlinesvg": "^0.8.1",

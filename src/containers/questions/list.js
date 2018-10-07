@@ -31,7 +31,7 @@ class QuestionsList extends Component {
 		
 		return this.clearSearch()
 	}
-	
+
 	// shouldComponentUpdate(nextProps) {
 	// 	if (this.props.questions !== nextProps.questions) return true;
 	// 	return false;
@@ -92,7 +92,7 @@ class QuestionsList extends Component {
 		}
 		
 	render() {
-		if (this.props.menuSelection == "home") {
+		if (this.props.menuSelection === "home") {
 			return (
 				<div>
 				{/* <div className={`marginTableList ${this.props.isFetchingCalls ? 'overlay' : ''}`}> */}

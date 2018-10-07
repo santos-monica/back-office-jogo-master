@@ -1,3 +1,11 @@
+.cadastro {
+    width: 70%;
+    margin: 10px auto;
+    background: #f9f9f9;
+    border: 1px solid #f7f7f7;
+    border-radius: 10px;
+}
+
 .teste {
     margin: 150px 30px;
     display: inline-block;

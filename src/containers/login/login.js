@@ -4,7 +4,6 @@ import { Button, Col, Container, Input, Label, Row, InputGroup, InputGroupAddon,
 import { bindActionCreators } from 'redux';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
-import puzzle from '../../res/img/puzzle.png';
 import { submitCredentials, checkIfLogged, clearError  } from '../../actions/login_actions';
 import AuthorizedAccess from '../../components/authorized';
 

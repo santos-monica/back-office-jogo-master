@@ -1,81 +1,69 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Button, Col, Form, FormGroup, Input, Label, Modal, ModalBody, ModalFooter, ModalHeader, FormFeedback } from 'reactstrap';
+import { Button, Table } from 'reactstrap';
 import { bindActionCreators } from 'redux';
 import { addTheme } from '../actions/theme_actions';
-import SVG from 'react-inlinesvg';
-import { modalAddQuestionToogle } from '../actions/generic_modals_handler_actions';
+import arts from '../res/img/icons/arts.png';
+import books from '../res/img/icons/books.png';
+import food from '../res/img/icons/food.png';
+import history from '../res/img/icons/history.png';
+import movies from '../res/img/icons/movies.png';
+import science from '../res/img/icons/science.png';
+import sports from '../res/img/icons/sports.png';
+import theater from '../res/img/icons/theater.png';
+import ModalAddTheme from '../modals/addTheme';
+import { modalAddThemeToogle } from '../actions/generic_modals_handler_actions';
 import 'react-notifications/lib/notifications.css';
-import { NotificationContainer, NotificationManager } from 'react-notifications';
+import { NotificationContainer } from 'react-notifications';
 
 class AddTheme extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            theme: {
+            tema: {
                 nome: '',
                 cor: '',
                 icone: ''
-            } 
+            }
         };
-
-        this.addTheme = this.addTheme.bind(this);
-    }
-
-    componentDidMount() {
-        // this.cancelAddQuestion();
-    }
-
-    handleChange(event, key) {
-
-        let state = { ...this.state }
-        let campo = key;
-        let valor = event.target.value;
-
-        switch(campo){
-            case "nome":
-                state.theme.nome = valor;
-                break;
-            case "cor":
-                state.theme.cor = valor;
-                break;
-            case "icone":
-                state.theme.icone = valor;
-                break;
-            default:
-                break;
-        }
-
-        this.setState({ ...state })
-    }
-
-    addTheme() {
-        this.state.theme = { ...this.state.theme };
-        try {
-            this.props.addTheme(this.state.theme);
-            NotificationManager.success('Tema Adicionada com Sucesso!', '', 3500);
-        } catch (err) {
-
-            NotificationManager.error('Não foi Possível adicionar o Tema', '', 3500);
-        }
     }
 
     renderTema(){
         if(Object.keys(this.props.temas).length > 0){
             return this.props.temas.map((tema) => {
-                    return (
-                        <tr key={tema.identifier}>
-                        <td>{tema.nome}</td>
-                        <td className="colorTd">#{tema.cor}</td>
-                        <td>{tema.icone}</td>
-                        <td className='text-center'>
-                        <Button title='Editar este Fluxo' className='listItemEdit fa fa-pencil-square fa-sm' color='link' onClick={() => { this.props.getStateList(tema.identifier) }}></Button>
-                        &nbsp;
-                        <Button title='Remover este Fluxo' className='listItemRemove fa fa-trash fa-sm' color='link' onClick={() => this.removeFlowConfirmation(tema.identifier)}></Button>
-                        </td>
-                        </tr>
-                    )
+                let icon;
+                switch(tema.icone){
+                    case "arts": icon = arts;
+                        break;
+                    case "books": icon = books;
+                        break;
+                    case "food": icon = food;
+                        break;
+                    case "history": icon = history;
+                        break;
+                    case "movies": icon = movies;
+                        break;
+                    case "science": icon = science;
+                        break;
+                    case "sports": icon = sports;
+                        break;
+                    case "theater": icon = theater;
+                        break;
+                    default: break;
+                }
+                return (
+                    <tr key={tema.identifier}>
+                    <td className="temaTd">{tema.nome}</td>
+                    <td className="colorTd" style={{backgroundColor: tema.cor}}>{tema.cor}</td>
+                    <td className="iconTd"><img src={icon} alt="icons" className="themeIcon"></img></td>
+                    <td className='text-center'>
+                    <Button title='Editar este Tema' className='listItemEdit fa fa-pencil-square fa-sm' color='link' onClick={() => { this.props.getStateList(tema.identifier) }}></Button>
+                    &nbsp;
+                    <Button title='Remover este Tema' className='listItemRemove fa fa-trash fa-sm' color='link' onClick={() => this.removeFlowConfirmation(tema.identifier)}></Button>
+                    </td>
+                    </tr>
+                )
                 })
             } 
     }
@@ -83,33 +71,25 @@ class AddTheme extends Component {
     render() {
         return (
             <div>
-                {this.renderTema()}
-                <Form>
-                    <FormGroup row className='justify-content-center'>
-                        <Label className="addThemeLabel" for="tema" sm={3}>tema</Label>
-                        <Col sm={7}>
-                            <Input invalid={this.state.theme.nome ? false : true} 
-                                value={this.state.theme.nome} 
-                                className='inputModal' type="text" 
-                                onChange={(e) => this.handleChange(e, "nome")} id="tema">
-                            </Input>
-                            <FormFeedback>tema é obrigatória</FormFeedback>
-                        </Col>
-                        <br />
-                        <br />
-                        {/* <SVG
-                            src="../res/img/icons/earth.svg"
-                            preloader={<Loader />}
-                            onLoad={(src) => {
-                                myOnLoadHandler(src);
-                            }}
-                            >
-                            {/* Here's some optional content for browsers that don't support XHR or inline
-                            SVGs. You can use other React components here too. Here, I'll show you.
-                            <img src="/path/to/myfile.png" /> */}
-                        {/* </SVG> */} 
-                    </FormGroup>
-                </Form>
+                <Button size='lg' className='fa fa fa-plus btnAddTheme' title='Adicionar Novo Tema' color='link' onClick={this.props.modalAddThemeToogle} ></Button>
+                <br />
+                <Table className='table-bordered'>
+					<thead className='theadProperties'>
+						<tr>
+							<th title='Tema'>TEMA</th>
+							<th title='Cor'>COR</th>
+							<th title='Icone'>ICONE</th>
+							<th title='Acoes'>AÇÕES</th>
+						</tr>
+					</thead>
+					<tbody>
+                    {this.renderTema()}
+					</tbody>
+				</Table>
+                <br />
+                <br />
+
+                <ModalAddTheme />
                 <NotificationContainer />
             </div>
         )
@@ -125,7 +105,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ modalAddQuestionToogle, addTheme }, dispatch)
+    return bindActionCreators({ modalAddThemeToogle, addTheme }, dispatch)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddTheme)

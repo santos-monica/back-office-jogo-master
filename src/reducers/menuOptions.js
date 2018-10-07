@@ -15,7 +15,7 @@ export default function (state = INITIAL_STATE, action) {
 	switch (action.type) {
 		case MENU_OPTION_SELECTED:
 
-			if (action.payload == "questions") {
+			if (action.payload === "questions") {
 
 				return {
 					...state, ishome_active: true, isstructure_active: false,
@@ -24,7 +24,7 @@ export default function (state = INITIAL_STATE, action) {
 				}
 			}
 
-			if (action.payload == "cadastro") {
+			if (action.payload === "cadastro") {
 				return {
 
 					...state, ishome_active: false, isstructure_active: true,

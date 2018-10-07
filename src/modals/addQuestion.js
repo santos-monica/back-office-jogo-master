@@ -33,43 +33,44 @@ class ModalAddQuestion extends Component {
 
     handleChange(event, key) {
 
-        let state = { ...this.state }
+        let question = { ...this.state }
         let campo = key;
         let valor = event.target.value;
 
         switch(campo){
             case "tema":
-                state.question.tema = valor;
+                question.tema = valor;
                 break;
             case "nivel":
-                state.question.nivel = valor;
+                question.nivel = valor;
                 break;
             case "pergunta":
-                state.question.pergunta = valor;
+                question.pergunta = valor;
                 break;
             case "alt1":
-                state.question.alt1 = valor;
+                question.alt1 = valor;
                 break;
             case "alt2":
-                state.question.alt2 = valor;
+                question.alt2 = valor;
                 break;
             case "alt3":
-                state.question.alt3 = valor;
+                question.alt3 = valor;
                 break;
             case "alt4":
-                state.question.alt4 = valor;
+                question.alt4 = valor;
                 break;
-
+            default:
+                return;
 
         }
 
-        this.setState({ ...state })
+        this.setState({ ...this.state, ...question })
     }
 
     addQuestion() {
-        this.state.question = { ...this.state.question };
+        let question = { ...this.state.question };
         try {
-            this.props.addQuestion(this.state.question);
+            this.props.addQuestion(question);
             this.props.modalAddQuestionToogle();
             // this.cancelAddQuestion();
             NotificationManager.success('Pergunta Adicionada com Sucesso!', '', 3500);
@@ -173,7 +174,7 @@ class ModalAddQuestion extends Component {
                     </ModalBody>
                     <ModalFooter className='modalBody'>
                         <Button className='btnCancel' onClick={() => { this.props.modalAddQuestionToogle(); this.cancelAddQuestion() }} color="secondary" ><i className="fa fa-times-circle" aria-hidden="true"></i> Cancelar</Button>
-                        <Button className='btnSave' disabled={this.state.question.tema == '-1' || this.state.question.nivel == '-1' || this.state.question.pergunta == '' || this.state.question.alt1 == '' || this.state.question.alt2 == '' || this.state.question.alt3 == '' || this.state.question.alt4 == ''} onClick={this.addQuestion} color="secondary"><i className="fa fa-plus" aria-hidden="true"></i> Adicionar</Button>
+                        <Button className='btnSave' disabled={this.state.question.tema === '-1' || this.state.question.nivel === '-1' || this.state.question.pergunta === '' || this.state.question.alt1 === '' || this.state.question.alt2 === '' || this.state.question.alt3 === '' || this.state.question.alt4 === ''} onClick={this.addQuestion} color="secondary"><i className="fa fa-plus" aria-hidden="true"></i> Adicionar</Button>
                     </ModalFooter>
                 </Modal>
                 <NotificationContainer />

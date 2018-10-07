@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
-import { Button, Table, Input, FormGroup, Row, Col, Container } from 'reactstrap';
+import { Button, Row, Container } from 'reactstrap';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { viewQuestion, removeQuestion } from '../../actions/questions_actions';
 import { modalAddQuestionToogle } from '../../actions/generic_modals_handler_actions';
-import ModalAddFlow from '../../modals/addQuestion';
 import AddTheme from '../../components/addTheme';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
@@ -75,18 +74,20 @@ class Cadastro extends Component {
 	renderTheme(){
 		if(this.state.isThemeSelected){
 			return (
-				<AddTheme/>
+				<Container className="cadastro">
+					<AddTheme/>
+				</Container>
 			)
 		}
 	}
 		
 	render() {
-		if (this.props.menuSelection == "cadastro") {
+		if (this.props.menuSelection === "cadastro") {
 		return (
 			<div>
 				<Container>
-					{this.renderTheme()}
 					{this.renderControl()}
+					{this.renderTheme()}
 					<Row sm={12} hidden={this.state.isThemeSelected || this.state.isLevelSelected || this.state.isQuestionSelected}>
 						<div className="teste" onClick={() => {this.handleClick('tema')}}><i className="fa fa-tags fa-4 justify-content-center iconBox" aria-hidden="true"></i> <p className="labelIcon">Temas</p></div>
 						<div className="teste" onClick={() => {this.handleClick('nivel')}}><i className="fa fa-tasks fa-4 justify-content-center iconBox" aria-hidden="true"></i> <p className="labelIcon">Dificuldade</p></div>
@@ -106,9 +107,9 @@ class Cadastro extends Component {
 	}	
 
 	handleClick(arg){
-		if(arg == 'tema'){
+		if(arg === 'tema'){
 			this.setState({ ...this.state, isThemeSelected: true, isLevelSelected: false, isQuestionSelected: false })
-		} else if(arg == 'nivel') {
+		} else if(arg === 'nivel') {
 			this.setState({ ...this.state, isThemeSelected: false, isLevelSelected: true, isQuestionSelected: false })
 		} else {
 			this.setState({ ...this.state, isThemeSelected: false, isLevelSelected: false, isQuestionSelected: true })
