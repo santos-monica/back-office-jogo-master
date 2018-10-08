@@ -3,6 +3,7 @@ import { Button, Table, Input, FormGroup, Row } from 'reactstrap';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { viewQuestion, removeQuestion } from '../../actions/questions_actions';
+import { viewThemes } from '../../actions/theme_actions';
 import { modalAddQuestionToogle } from '../../actions/generic_modals_handler_actions';
 import ModalAddFlow from '../../modals/addQuestion';
 import Swal from 'sweetalert2';
@@ -25,6 +26,10 @@ class QuestionsList extends Component {
 			inputSearchText: '',
 			searchRegex: ''
 		}
+	}
+
+	componentWillMount(){
+		this.props.viewThemes();
 	}
 	
 	componentWillReceiveProps(){
@@ -166,7 +171,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-	return bindActionCreators({ viewQuestion, removeQuestion, modalAddQuestionToogle }, dispatch);
+	return bindActionCreators({ viewQuestion, removeQuestion, modalAddQuestionToogle, viewThemes }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(QuestionsList);

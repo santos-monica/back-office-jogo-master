@@ -1,4 +1,4 @@
-import { ADD_THEME } from '../actions/theme_actions';
+import { ADD_THEME, POPULATE_THEMES } from '../actions/theme_actions';
 import { ADD_LEVEL } from '../actions/level_actions';
 
 const INITIAL_STATE = { 
@@ -52,6 +52,11 @@ export default function (state = INITIAL_STATE, action) {
             let niveis = state.nivel;
             niveis.push(action.payload);
             return { ...state, nivel: niveis }
+        }
+
+        case POPULATE_THEMES: {
+            let themes = action.payload;
+            return { ...state, temas: themes }
         }
 
         default:

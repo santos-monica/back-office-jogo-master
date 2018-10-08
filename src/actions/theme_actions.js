@@ -2,17 +2,26 @@ import axios from 'axios';
 
 export const ADD_THEME = 'ADD_THEME';
 export const ADD_THEME_LOCALLY = 'ADD_THEME_LOCALLY';
+export const VIEW_THEMES = 'VIEW_THEMES';
+export const POPULATE_THEMES = 'POPULATE_THEMES';
 export const VIEW_THEME = 'VIEW_THEME';
 export const UPDATE_THEME = 'UPDATE_THEME';
 export const REMOVE_THEME = 'REMOVE_THEME';
 
 export function viewThemes(){
     return(dispatch) => {
-        axios.get(`https://localhost:3000/api/temacontroller`)
+        axios.get(`http://localhost:3000/api/temacontroller`)
             .then((response) => {
                 console.log(response.data);
                 dispatch(populateThemes(response.data));
             })
+    }
+}
+
+export function populateThemes(themes){
+    return {
+        type: POPULATE_THEMES,
+        payload: themes
     }
 }
 
@@ -26,7 +35,7 @@ export function viewTheme(theme, index) {
 
 export function addTheme(theme) {
     return(dispatch) =>  {
-        axios.post(`https://localhost:3000/api/temacontroller`, { theme })
+        axios.post(`http://localhost:3000/api/temacontroller`, { theme })
             .then((response) => {
                 console.log(response.data);
                 dispatch(addThemeLocally(response.data));
