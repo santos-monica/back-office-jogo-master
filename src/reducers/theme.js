@@ -1,4 +1,4 @@
-import { VIEW_THEME, ADD_THEME } from '../actions/theme_actions';
+import { VIEW_THEME, ADD_THEME, EDIT_THEME } from '../actions/theme_actions';
 
 const INITIAL_STATE = { 
     icons: [
@@ -23,7 +23,8 @@ const INITIAL_STATE = {
         'restaurant.svg',
         'soccer-ball-variant.svg',
         'theather-masks-coupe.svg'
-    ] 
+    ],
+    themeSelected: {}
 };
 
 export default function (state = INITIAL_STATE, action) {
@@ -35,7 +36,7 @@ export default function (state = INITIAL_STATE, action) {
         case ADD_THEME: {
             let questions = state.all;
             let question = {
-                identifier: 1,
+                id: 1,
                 tema: action.payload.tema,
                 nivel: action.payload.nivel,
                 pergunta: action.payload.pergunta,
@@ -51,6 +52,11 @@ export default function (state = INITIAL_STATE, action) {
             questions.push(question);
 
             return { ...state, questions }
+        }
+
+        case EDIT_THEME: {
+            let selected = action.payload;
+            return { ...state, themeSelected: selected };
         }
 
         default:

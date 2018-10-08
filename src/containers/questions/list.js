@@ -74,8 +74,8 @@ class QuestionsList extends Component {
 			return Object.entries(this.props.questions)
 			.map(([idx, question]) => {
 				return (
-					// <tr key={question.identifier}>
-					<tr key={question.identifier} hidden={!this.filterQuestions(this.state.searchRegex, [question.tema, question.nivel, question.pergunta, question.respostas.toString()])}>
+					// <tr key={question.id}>
+					<tr key={question.id} hidden={!this.filterQuestions(this.state.searchRegex, [question.tema, question.nivel, question.pergunta, question.respostas.toString()])}>
 					<td>{question.tema}</td>
 					<td>{question.nivel}</td>
 					<td>{question.pergunta}</td>

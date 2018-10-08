@@ -6,6 +6,7 @@ import ModalAddUser from './modal_adduser';
 import RequestHandler from './requester_handle';
 import GenericModalsHandler from './generic_modals_handler';
 import Structure from './structure';
+import Theme from './theme';
 
 
 const rootReducer = combineReducers({
@@ -16,6 +17,7 @@ const rootReducer = combineReducers({
 	requesthandler: RequestHandler,
 	genericmodals: GenericModalsHandler,
 	structure: Structure,
+	theme: Theme
 });
 
 export default rootReducer;

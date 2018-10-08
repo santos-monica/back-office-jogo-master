@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Button, Col, Form, FormGroup, Input, Label, Modal, ModalBody, ModalFooter, ModalHeader, FormFeedback } from 'reactstrap';
 import { bindActionCreators } from 'redux';
-import { addTheme } from '../actions/theme_actions';
+import { addTheme, updateTheme } from '../actions/theme_actions';
 import arts from '../res/img/icons/arts.png';
 import books from '../res/img/icons/books.png';
 import food from '../res/img/icons/food.png';
@@ -12,7 +12,8 @@ import science from '../res/img/icons/science.png';
 import sports from '../res/img/icons/sports.png';
 import theater from '../res/img/icons/theater.png';
 import { modalAddThemeToogle } from '../actions/generic_modals_handler_actions';
-import { SketchPicker, GithubPicker, ChromePicker, CirclePicker, BlockPicker, TwitterPicker } from 'react-color';
+import { SketchPicker } from 'react-color';
+// import { SketchPicker, GithubPicker, ChromePicker, CirclePicker, BlockPicker, TwitterPicker } from 'react-color';
 import 'react-notifications/lib/notifications.css';
 import { NotificationContainer, NotificationManager } from 'react-notifications';
 
@@ -40,6 +41,13 @@ class ModalAddTheme extends Component {
 
         this.addTheme = this.addTheme.bind(this);
         this.handleChangeComplete = this.handleChangeComplete.bind(this);
+    }
+
+    componentDidUpdate(){
+        if(Object.keys(this.props.selectedTheme).length > 0 && this.state.tema.nome === ''){
+            let theme = this.props.selectedTheme;
+            this.setState({ ...this.state, tema: theme });
+        }
     }
 
     clearState(){
@@ -83,7 +91,11 @@ class ModalAddTheme extends Component {
     addTheme() {
         let theme = { ...this.state.tema };
         try {
-            this.props.addTheme(theme);
+            if(Object.keys(this.props.selectedTheme).length > 0){
+                this.props.updateTheme(theme, theme.id);
+            } else {
+                this.props.addTheme(theme);
+            }
             NotificationManager.success('Tema Adicionada com Sucesso!', '', 3500);
         } catch (err) {
 
@@ -113,7 +125,7 @@ class ModalAddTheme extends Component {
         return (
             <div>
                 <Modal size='lg' toggle={() => { this.props.modalAddThemeToogle() }} isOpen={this.props.modal.ismodaladdthemeopen}>
-                    <ModalHeader className='modalBody justify-content-center'><span className='fa fa-plus-circle spanEditTitle'></span> Adicionar Novo Tema </ModalHeader>
+                    <ModalHeader className='modalBody justify-content-center'><span className={`fa ${Object.keys(this.props.selectedTheme).length > 0 ? 'fa-refresh' : 'fa-plus-circle'} spanEditTitle`}></span> {(Object.keys(this.props.selectedTheme).length > 0) ? 'Editar Tema' : 'Adicionar Novo Tema'} </ModalHeader>
                     <ModalBody className='modalBody'>
                         <Form>
                         <FormGroup row className='justify-content-center'>
@@ -162,7 +174,7 @@ class ModalAddTheme extends Component {
                     <ModalFooter className='modalBody'>
                         <Button className='btnCancel' onClick={() => { this.props.modalAddThemeToogle(); this.clearState();}} color="secondary" ><i className="fa fa-times-circle" aria-hidden="true"></i> Cancelar</Button>
                         <Button className='btnSave' disabled={this.state.tema.nome === '' || this.state.tema.cor === '' || this.state.tema.icone === ''} 
-                            onClick={() => {this.addTheme(); this.clearState(); this.props.modalAddThemeToogle()}} color="secondary"><i className="fa fa-plus" aria-hidden="true"></i> Adicionar</Button>
+                            onClick={() => {this.addTheme(); this.clearState(); this.props.modalAddThemeToogle()}} color="secondary"><i className={`fa ${Object.keys(this.props.selectedTheme).length > 0 ? 'fa-refresh' : 'fa-plus'}`} aria-hidden="true"></i> {Object.keys(this.props.selectedTheme).length > 0 ? 'Salvar' : 'Adicionar'}</Button>
                     </ModalFooter>
                 </Modal>
                 <NotificationContainer />
@@ -175,12 +187,13 @@ function mapStateToProps(state) {
     return {
         modal: state.genericmodals,
         temas: state.structure.temas,
-		nivel: state.structure.nivel
+        nivel: state.structure.nivel,
+        selectedTheme: state.theme.themeSelected
     }
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ modalAddThemeToogle, addTheme }, dispatch)
+    return bindActionCreators({ modalAddThemeToogle, addTheme, updateTheme }, dispatch)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ModalAddTheme)

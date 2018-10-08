@@ -1,5 +1,6 @@
 export const ADD_THEME = 'ADD_THEME';
 export const VIEW_THEME = 'VIEW_THEME';
+export const EDIT_THEME = 'EDIT_THEME';
 export const UPDATE_THEME = 'UPDATE_THEME';
 export const REMOVE_THEME = 'REMOVE_THEME';
 
@@ -16,6 +17,13 @@ export function addTheme(theme) {
         type: ADD_THEME,
         payload: theme
     };
+}
+
+export function editTheme(theme){
+    return {
+        type: EDIT_THEME,
+        payload: theme
+    }
 }
 
 export function updateTheme(theme, index) {

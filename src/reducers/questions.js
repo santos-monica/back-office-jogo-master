@@ -3,7 +3,7 @@ import { VIEW_QUESTION, ADD_QUESTION } from '../actions/questions_actions';
 const INITIAL_STATE = { 
     all: [
         {
-            identifier: 1,
+            id: 1,
             tema: 'Teste',
             nivel: 'Fácil',
             pergunta: 'Qual o nome da irmã mais velha da Leilah?',
@@ -15,7 +15,7 @@ const INITIAL_STATE = {
             correta: 'Laura'
         },
         {
-            identifier: 2,
+            id: 2,
             tema: 'Outro Teste',
             nivel: 'Dificil',
             pergunta: 'O que se comemora em 23 de outubro?',
@@ -37,7 +37,7 @@ export default function (state = INITIAL_STATE, action) {
         case ADD_QUESTION: {
             let questions = state.all;
             let question = {
-                identifier: 1,
+                id: 1,
                 tema: action.payload.tema,
                 nivel: action.payload.nivel,
                 pergunta: action.payload.pergunta,
