@@ -1,4 +1,5 @@
 import { ADD_THEME } from '../actions/theme_actions';
+import { ADD_LEVEL } from '../actions/level_actions';
 
 const INITIAL_STATE = { 
     temas: [
@@ -16,10 +17,26 @@ const INITIAL_STATE = {
         }
     ],
     nivel: [
-        "Fácil",
-        "Intermediário",
-        "Difícil",
-        "Mestre"
+        {
+            id: 1,
+            nivel: "Fácil",
+            pontos: 5
+        },
+        {
+            id: 2,
+            nivel: "Intermediário",
+            pontos: 10
+        },
+        {
+            id: 3,
+            nivel: "Difícil",
+            pontos: 20
+        },
+        {
+            id: 4,
+            nivel: "Mestre",
+            pontos: 40
+        }
     ]
 };
 
@@ -30,6 +47,13 @@ export default function (state = INITIAL_STATE, action) {
             temas.push(action.payload);
             return { ...state, temas: temas }
         }
+
+        case ADD_LEVEL: {
+            let niveis = state.nivel;
+            niveis.push(action.payload);
+            return { ...state, nivel: niveis }
+        }
+
         default:
             return { ...state }
         

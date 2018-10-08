@@ -1,30 +1,9 @@
-import { VIEW_THEME, ADD_THEME, EDIT_THEME } from '../actions/theme_actions';
+import { VIEW_THEME, ADD_THEME } from '../actions/theme_actions';
 
 const INITIAL_STATE = { 
     icons: [
-        'antique-building.svg',
-        'apple-logotype.svg',
-        'car-compact.svg',
-        'castle.svg',
-        'coding.svg',
-        'database.svg',
-        'deathly-hallows.svg',
-        'earth.svg',
-        'flask-outline.svg',
-        'html-5-logo.svg',
-        'idea.svg',
-        'knight.svg',
-        'maths-class-materials-cross-of-a-pencil-and-a-ruler.svg',
-        'mouse.svg',
-        'music-note-black-symbol.svg',
-        'open-book.svg',
-        'paint-board-and-brush.svg',
-        'photo-camera.svg',
-        'restaurant.svg',
-        'soccer-ball-variant.svg',
-        'theather-masks-coupe.svg'
-    ],
-    themeSelected: {}
+        
+    ]
 };
 
 export default function (state = INITIAL_STATE, action) {
@@ -52,11 +31,6 @@ export default function (state = INITIAL_STATE, action) {
             questions.push(question);
 
             return { ...state, questions }
-        }
-
-        case EDIT_THEME: {
-            let selected = action.payload;
-            return { ...state, themeSelected: selected };
         }
 
         default:

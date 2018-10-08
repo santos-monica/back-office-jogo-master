@@ -36,7 +36,8 @@ class ModalAddTheme extends Component {
                 {"science": science}, 
                 {"sports": sports}, 
                 {"theater": theater}
-            ]
+            ],
+            shouldClearInput: false
         };
 
         this.addTheme = this.addTheme.bind(this);
@@ -46,7 +47,9 @@ class ModalAddTheme extends Component {
     componentDidUpdate(){
         if(Object.keys(this.props.selectedTheme).length > 0 && this.state.tema.nome === ''){
             let theme = this.props.selectedTheme;
-            this.setState({ ...this.state, tema: theme });
+            this.setState({ ...this.state, tema: theme, shouldClearInput: true });
+        } else if((Object.keys(this.props.selectedTheme).length === 0) && this.state.shouldClearInput){
+            this.clearState();
         }
     }
 
@@ -56,14 +59,14 @@ class ModalAddTheme extends Component {
             cor: '',
             icone: ''
         };
-        this.setState({ tema });
+        this.setState({ tema, shouldClearInput: false });
     }
 
     handleChangeComplete = (color) => {
         let tema = this.state.tema;
         tema.cor = color.hex;
         this.setState({ ...this.state, ...tema });
-      };
+    };
 
     handleChange(event, key) {
 
@@ -98,7 +101,6 @@ class ModalAddTheme extends Component {
             }
             NotificationManager.success('Tema Adicionada com Sucesso!', '', 3500);
         } catch (err) {
-
             NotificationManager.error('Não foi Possível adicionar o Tema', '', 3500);
         }
     }
@@ -118,7 +120,7 @@ class ModalAddTheme extends Component {
               color={ this.state.tema.cor }
               onChangeComplete={ this.handleChangeComplete }    
             />
-          );
+        );
     }
 
     render() {
@@ -166,8 +168,6 @@ class ModalAddTheme extends Component {
                                 {this.renderColorPicker()}
                             </div>
                             <br />
-                            <br />
-                            <br />
                         </FormGroup>
                     </Form>
                     </ModalBody>
@@ -188,7 +188,7 @@ function mapStateToProps(state) {
         modal: state.genericmodals,
         temas: state.structure.temas,
         nivel: state.structure.nivel,
-        selectedTheme: state.theme.themeSelected
+        selectedTheme: state.genericmodals.themeSelected
     }
 }
 

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Button, Table } from 'reactstrap';
 import { bindActionCreators } from 'redux';
-import { modalAddThemeToogle } from '../actions/generic_modals_handler_actions';
+import { modalAddThemeToogle, editTheme } from '../actions/generic_modals_handler_actions';
 import 'react-notifications/lib/notifications.css';
 import { NotificationContainer } from 'react-notifications';
 import arts from '../res/img/icons/arts.png';
@@ -14,7 +14,7 @@ import science from '../res/img/icons/science.png';
 import sports from '../res/img/icons/sports.png';
 import theater from '../res/img/icons/theater.png';
 import ModalAddTheme from '../modals/addTheme';
-import { addTheme, editTheme } from '../actions/theme_actions';
+import { addTheme } from '../actions/theme_actions';
 
 
 class AddTheme extends Component {
@@ -59,7 +59,7 @@ class AddTheme extends Component {
                     <td className="colorTd" style={{backgroundColor: tema.cor}}>{tema.cor}</td>
                     <td className="iconTd"><img src={icon} alt="icons" className="themeIcon"></img></td>
                     <td className='text-center'>
-                    <Button title='Editar este Tema' className='listItemEdit fa fa-pencil-square fa-sm' color='link' onClick={() => { this.props.editTheme(tema); this.props.modalAddThemeToogle(); }}></Button>
+                    <Button title='Editar este Tema' className='listItemEdit fa fa-pencil-square fa-sm' color='link' onClick={() => { this.props.modalAddThemeToogle(); this.props.editTheme(tema); }}></Button>
                     &nbsp;
                     <Button title='Remover este Tema' className='listItemRemove fa fa-trash fa-sm' color='link' onClick={() => this.removeFlowConfirmation(tema.id)}></Button>
                     </td>

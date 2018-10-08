@@ -34,6 +34,7 @@
     "webpack-node-externals": "^1.2.0"
   },
   "dependencies": {
+    "axios": "^0.18.0",
     "bootstrap": "*",
     "font-awesome": "*",
     "json-schema-traverse": "^0.4.1",

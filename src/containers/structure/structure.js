@@ -5,6 +5,7 @@ import { bindActionCreators } from 'redux';
 import { viewQuestion, removeQuestion } from '../../actions/questions_actions';
 import { modalAddQuestionToogle } from '../../actions/generic_modals_handler_actions';
 import AddTheme from '../../components/addTheme';
+import AddLevel from '../../components/addLevel';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 
@@ -71,6 +72,16 @@ class Cadastro extends Component {
 		}
 	}
 
+	renderLevel(){
+		if(this.state.isLevelSelected){
+			return (
+				<Container className="cadastro">
+					<AddLevel/>
+				</Container>
+			)
+		}
+	}
+
 	renderTheme(){
 		if(this.state.isThemeSelected){
 			return (
@@ -88,6 +99,7 @@ class Cadastro extends Component {
 				<Container>
 					{this.renderControl()}
 					{this.renderTheme()}
+					{this.renderLevel()}
 					<Row sm={12} hidden={this.state.isThemeSelected || this.state.isLevelSelected || this.state.isQuestionSelected}>
 						<div className="teste" onClick={() => {this.handleClick('tema')}}><i className="fa fa-tags fa-4 justify-content-center iconBox" aria-hidden="true"></i> <p className="labelIcon">Temas</p></div>
 						<div className="teste" onClick={() => {this.handleClick('nivel')}}><i className="fa fa-tasks fa-4 justify-content-center iconBox" aria-hidden="true"></i> <p className="labelIcon">Dificuldade</p></div>
