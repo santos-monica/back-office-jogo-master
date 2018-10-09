@@ -3,6 +3,7 @@ export const MODAL_ADDTHEME_TOOGLE = 'MODAL_ADDTHEME_TOOGLE';
 export const MODAL_ADDLEVEL_TOOGLE = 'MODAL_ADDLEVEL_TOOGLE';
 export const EDIT_THEME = 'EDIT_THEME';
 export const EDIT_LEVEL = 'EDIT_LEVEL';
+export const EDIT_QUESTION = 'EDIT_QUESTION';
 
 export function modalAddQuestionToogle() {
     return {
@@ -33,6 +34,13 @@ export function editLevel(level){
     return {
         type: EDIT_LEVEL,
         payload: level
+    }
+}
+
+export function editQuestion(question){
+    return {
+        type: EDIT_QUESTION,
+        payload: question
     }
 }
 

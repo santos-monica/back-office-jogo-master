@@ -1,30 +1,58 @@
-import { VIEW_QUESTION, ADD_QUESTION } from '../actions/questions_actions';
+import { VIEW_QUESTION, ADD_QUESTION_LOCALLY, QUESTION_REQUEST_FAILED, QUESTION_REQUEST_SUCCEEDED } from '../actions/questions_actions';
 
 const INITIAL_STATE = { 
-    all: [
+    requestSucceeded: false,
+    requestFailed: false,
+    questions: [
         {
             id: 1,
-            tema: 'Teste',
-            nivel: 'Fácil',
+            tema: 1,
+            nivel: 1,
+            patrocinada: false,
             pergunta: 'Qual o nome da irmã mais velha da Leilah?',
             respostas: [
-                'Laura',
-                'Luane',
-                'Louise'
+                {
+                    resposta: 'Laura',
+                    correta: true
+                },
+                {
+                    resposta: 'Louise',
+                    correta: false
+                },
+                {
+                    resposta: 'Luane',
+                    correta: false
+                },
+                {
+                    resposta: 'Joana',
+                    correta: false
+                }
             ],
-            correta: 'Laura'
         },
         {
             id: 2,
-            tema: 'Outro Teste',
-            nivel: 'Dificil',
-            pergunta: 'O que se comemora em 23 de outubro?',
+            tema: 2,
+            nivel: 3,
+            patrocinada: true,
+            pergunta: 'Outra pergunta?',
             respostas: [
-                'Dia do Aviador',
-                'Dia da Ávore',
-                'Dia do Amigo'
+                {
+                    resposta: 'um',
+                    correta: false
+                },
+                {
+                    resposta: 'dois',
+                    correta: false
+                },
+                {
+                    resposta: 'tres',
+                    correta: true
+                },
+                {
+                    resposta: 'quatro',
+                    correta: false
+                }
             ],
-            correta: 'Dia do Aviador'
         }
     ] 
 };
@@ -34,25 +62,20 @@ export default function (state = INITIAL_STATE, action) {
         case VIEW_QUESTION: {
             return { ...state }
         }
-        case ADD_QUESTION: {
-            let questions = state.all;
-            let question = {
-                id: 1,
-                tema: action.payload.tema,
-                nivel: action.payload.nivel,
-                pergunta: action.payload.pergunta,
-                respostas: []
-            }
-            question.respostas = [ 
-                action.payload.alt1, 
-                action.payload.alt2, 
-                action.payload.alt3, 
-                action.payload.alt4
-            ];
+        case ADD_QUESTION_LOCALLY: {
+            let questionsList = state.questions;
+            let question = action.payload;
+            questionsList.push(question);
 
-            questions.push(question);
+            return { ...state, questions: questionsList }
+        }
 
-            return { ...state, questions }
+        case QUESTION_REQUEST_FAILED: {
+            return { ...state, requestFailed: true, requestSucceeded: false };
+        }
+
+        case QUESTION_REQUEST_SUCCEEDED: {
+            return { ...state, requestFailed: false, requestSucceeded: true };
         }
 
         default:

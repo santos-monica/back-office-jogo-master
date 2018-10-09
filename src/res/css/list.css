@@ -10,6 +10,11 @@
     text-align: center;
 }
 
+.correta {
+    color: rgb(98, 218, 164);
+    font-weight: bold;
+}
+
 table.table-bordered>thead>tr>th {
     border: 1px solid #d6d6c2;
     /* box-shadow: 1px 1px 1px 0.70 #555353; */

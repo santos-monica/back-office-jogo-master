@@ -2,16 +2,17 @@ import React, { Component } from 'react';
 import { Button, Table, Input, FormGroup, Row } from 'reactstrap';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { viewQuestion, removeQuestion } from '../../actions/questions_actions';
-import { viewThemes } from '../../actions/theme_actions';
-import { modalAddQuestionToogle } from '../../actions/generic_modals_handler_actions';
-import ModalAddFlow from '../../modals/addQuestion';
+import { viewQuestion, removeQuestion } from '../actions/questions_actions';
+import { viewThemes } from '../actions/theme_actions';
+import { modalAddQuestionToogle } from '../actions/generic_modals_handler_actions';
+import { NotificationContainer } from 'react-notifications';
 import Swal from 'sweetalert2';
+import ModalAddQuestion from '../modals/addQuestion';
 import withReactContent from 'sweetalert2-react-content';
 
 const MySwal = withReactContent(Swal)
 
-class QuestionsList extends Component {
+class AddQuestion extends Component {
 	
 	constructor(props) {
 		
@@ -124,20 +125,11 @@ class QuestionsList extends Component {
 		}
 		
 	render() {
-		if (this.props.menuSelection === "home") {
+		if (this.props.menuSelection === "cadastro") {
 			return (
 				<div>
-				{/* <div className={`marginTableList ${this.props.isFetchingCalls ? 'overlay' : ''}`}> */}
-				<FormGroup className='form-inline justify-content-center'>
-					<Input value={this.state.inputSearchText} onChange={this.handleInputSearchText} className='col-sm-6 inputBuscarPerguntas' type="text" id="buscarfluxo" name="buscarfluxo" placeholder="Digite o nome do Fluxo para Busca..." />
-					&nbsp;
-				</FormGroup>
-				<br />
-				<Row className='justify-content-center'>
-					<div className='text-center spinnerFlow' hidden={!this.props.isFetchingCalls}>
-						<i className="fa fa-circle-o-notch spanLoading fa-spin "></i>
-					</div>
-				</Row>
+                <Button size='lg' className='fa fa fa-plus btnAddTheme' title='Adicionar Novo Tema' color='link' onClick={this.props.modalAddQuestionToogle} ></Button>
+                <br />
 				<Table className='table-bordered'>
 					<thead className='theadProperties'>
 						<tr>
@@ -156,6 +148,9 @@ class QuestionsList extends Component {
 					{this.renderList()}
 					</tbody>
 				</Table>
+                <ModalAddQuestion />
+                <NotificationContainer />
+
 				</div>
 			)
 		} else {
@@ -204,5 +199,5 @@ function mapDispatchToProps(dispatch) {
 	return bindActionCreators({ viewQuestion, removeQuestion, modalAddQuestionToogle, viewThemes }, dispatch);
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(QuestionsList);
+export default connect(mapStateToProps, mapDispatchToProps)(AddQuestion);
 		

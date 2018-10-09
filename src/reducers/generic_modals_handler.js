@@ -1,11 +1,12 @@
-import { MODAL_ADDQUESTION_TOOGLE, MODAL_ADDTHEME_TOOGLE, MODAL_ADDLEVEL_TOOGLE, EDIT_THEME, EDIT_LEVEL } from '../actions/generic_modals_handler_actions';
+import { MODAL_ADDQUESTION_TOOGLE, MODAL_ADDTHEME_TOOGLE, MODAL_ADDLEVEL_TOOGLE, EDIT_THEME, EDIT_LEVEL, EDIT_QUESTION } from '../actions/generic_modals_handler_actions';
 
 const INITIAL_STATE = {
     ismodaladdquestionopen: false,
     ismodaladdthemeopen: false,
     ismodaladdlevelopen: false,
     themeSelected: {},
-    levelSelected: {}
+    levelSelected: {},
+    questionSelected: {}
 }
 
 export default function (state = INITIAL_STATE, action) {
@@ -14,7 +15,7 @@ export default function (state = INITIAL_STATE, action) {
 
         case MODAL_ADDQUESTION_TOOGLE:
             state.ismodaladdquestionopen = !state.ismodaladdquestionopen;
-            return { ...state, themeSelected: {} }
+            return { ...state, questionSelected: {} }
 
         case MODAL_ADDTHEME_TOOGLE:
             state.ismodaladdthemeopen = !state.ismodaladdthemeopen;
@@ -32,6 +33,11 @@ export default function (state = INITIAL_STATE, action) {
         case EDIT_LEVEL: {
             let selected = action.payload;
             return { ...state, levelSelected: selected };
+        }
+
+        case EDIT_QUESTION: {
+            let selected = action.payload;
+            return { ...state, questionSelected: selected };
         }
 
         default:

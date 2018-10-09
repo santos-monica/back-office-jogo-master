@@ -5,13 +5,13 @@ const INITIAL_STATE = {
     temas: [
         {
             id: 1,
-            nome: "Filmes",
+            tema: "Filmes",
             cor: "#3e3e3e",
             icone: 'movies'
         },
         {
             id: 2,
-            nome: "Livros",
+            tema: "Livros",
             cor: "#f0f0f0",
             icone: 'books'
         }

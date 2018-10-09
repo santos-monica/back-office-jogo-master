@@ -55,7 +55,7 @@ class AddTheme extends Component {
                 }
                 return (
                     <tr key={tema.id}>
-                    <td className="temaTd">{tema.nome}</td>
+                    <td className="temaTd">{tema.tema}</td>
                     <td className="colorTd" style={{backgroundColor: tema.cor}}>{tema.cor}</td>
                     <td className="iconTd"><img src={icon} alt="icons" className="themeIcon"></img></td>
                     <td className='text-center'>

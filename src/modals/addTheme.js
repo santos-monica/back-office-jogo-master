@@ -45,7 +45,7 @@ class ModalAddTheme extends Component {
     }
 
     componentDidUpdate(){
-        if(Object.keys(this.props.selectedTheme).length > 0 && this.state.tema.nome === ''){
+        if(Object.keys(this.props.selectedTheme).length > 0 && this.state.tema.tema === ''){
             let theme = this.props.selectedTheme;
             this.setState({ ...this.state, tema: theme, shouldClearInput: true });
         } else if((Object.keys(this.props.selectedTheme).length === 0) && this.state.shouldClearInput){
@@ -76,7 +76,7 @@ class ModalAddTheme extends Component {
 
         switch(campo){
             case "nome":
-                state.tema.nome = valor;
+                state.tema.tema = valor;
                 break;
             case "cor":
                 state.tema.cor = valor;
@@ -133,8 +133,8 @@ class ModalAddTheme extends Component {
                         <FormGroup row className='justify-content-center'>
                             <Label className="LocallyLabel" for="tema" sm={3}>Tema</Label>
                             <Col sm={9}>
-                                <Input invalid={this.state.tema.nome ? false : true} 
-                                    value={this.state.tema.nome} 
+                                <Input invalid={this.state.tema.tema ? false : true} 
+                                    value={this.state.tema.tema} 
                                     className='inputTheme' type="text" 
                                     onChange={(e) => this.handleChange(e, "nome")} id="tema">
                                 </Input>
@@ -173,7 +173,7 @@ class ModalAddTheme extends Component {
                     </ModalBody>
                     <ModalFooter className='modalBody'>
                         <Button className='btnCancel' onClick={() => { this.props.modalAddThemeToogle(); this.clearState();}} color="secondary" ><i className="fa fa-times-circle" aria-hidden="true"></i> Cancelar</Button>
-                        <Button className='btnSave' disabled={this.state.tema.nome === '' || this.state.tema.cor === '' || this.state.tema.icone === ''} 
+                        <Button className='btnSave' disabled={this.state.tema.tema === '' || this.state.tema.cor === '' || this.state.tema.icone === ''} 
                             onClick={() => {this.addTheme(); this.clearState(); this.props.modalAddThemeToogle()}} color="secondary"><i className={`fa ${Object.keys(this.props.selectedTheme).length > 0 ? 'fa-refresh' : 'fa-plus'}`} aria-hidden="true"></i> {Object.keys(this.props.selectedTheme).length > 0 ? 'Salvar' : 'Adicionar'}</Button>
                     </ModalFooter>
                 </Modal>
