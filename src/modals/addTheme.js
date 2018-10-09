@@ -11,7 +11,7 @@ import movies from '../res/img/icons/movies.png';
 import science from '../res/img/icons/science.png';
 import sports from '../res/img/icons/sports.png';
 import theater from '../res/img/icons/theater.png';
-import { modalAddThemeToogle } from '../actions/generic_modals_handler_actions';
+import { modalAddThemeToogle, setClearInput } from '../actions/generic_modals_handler_actions';
 import { SketchPicker } from 'react-color';
 // import { SketchPicker, GithubPicker, ChromePicker, CirclePicker, BlockPicker, TwitterPicker } from 'react-color';
 import 'react-notifications/lib/notifications.css';
@@ -23,7 +23,7 @@ class ModalAddTheme extends Component {
         super(props);
         this.state = {
             tema: {
-                nome: '',
+                tema: '',
                 cor: '',
                 icone: ''
             },
@@ -47,25 +47,27 @@ class ModalAddTheme extends Component {
     componentDidUpdate(){
         if(Object.keys(this.props.selectedTheme).length > 0 && this.state.tema.tema === ''){
             let theme = this.props.selectedTheme;
-            this.setState({ ...this.state, tema: theme, shouldClearInput: true });
-        } else if((Object.keys(this.props.selectedTheme).length === 0) && this.state.shouldClearInput){
+            this.props.setClearInput(true);
+            this.setState({ ...this.state, tema: theme });
+        } else if((Object.keys(this.props.selectedTheme).length === 0) && this.props.shouldClearInput){
             this.clearState();
         }
     }
 
     clearState(){
         let tema = {
-            nome: '',
+            tema: '',
             cor: '',
             icone: ''
         };
-        this.setState({ tema, shouldClearInput: false });
+        this.setState({ ...this.state, tema: tema });
+        this.props.setClearInput(false);
     }
 
     handleChangeComplete = (color) => {
         let tema = this.state.tema;
         tema.cor = color.hex;
-        this.setState({ ...this.state, ...tema });
+        this.setState({ ...this.state, tema: tema });
     };
 
     handleChange(event, key) {
@@ -75,7 +77,7 @@ class ModalAddTheme extends Component {
         let valor = event.target ? event.target.value : event;
 
         switch(campo){
-            case "nome":
+            case "tema":
                 state.tema.tema = valor;
                 break;
             case "cor":
@@ -136,7 +138,7 @@ class ModalAddTheme extends Component {
                                 <Input invalid={this.state.tema.tema ? false : true} 
                                     value={this.state.tema.tema} 
                                     className='inputTheme' type="text" 
-                                    onChange={(e) => this.handleChange(e, "nome")} id="tema">
+                                    onChange={(e) => this.handleChange(e, "tema")} id="tema">
                                 </Input>
                                 <FormFeedback>Tema é obrigatório</FormFeedback>
                             </Col>
@@ -159,7 +161,7 @@ class ModalAddTheme extends Component {
                                     value={this.state.tema.cor} 
                                     disabled
                                     className='inputTheme' type="text" 
-                                    onChange={(e) => this.handleChange(e, "nome")} id="cor">
+                                    onChange={(e) => this.handleChange(e, "tema")} id="cor">
                                 </Input>
                                 <FormFeedback>Cor é obrigatória</FormFeedback>
                             </Col>
@@ -188,12 +190,14 @@ function mapStateToProps(state) {
         modal: state.genericmodals,
         temas: state.structure.temas,
         nivel: state.structure.nivel,
-        selectedTheme: state.genericmodals.themeSelected
+        selectedTheme: state.genericmodals.themeSelected,
+        shouldClearInput: state.genericmodals.shouldClearInput
+
     }
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ modalAddThemeToogle, addThemeLocally, updateTheme }, dispatch)
+    return bindActionCreators({ modalAddThemeToogle, addThemeLocally, updateTheme, setClearInput }, dispatch)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ModalAddTheme)
