@@ -3,8 +3,7 @@ import { Button, Table, Input, FormGroup, Row } from 'reactstrap';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { viewQuestion, removeQuestion } from '../actions/questions_actions';
-import { viewThemes } from '../actions/theme_actions';
-import { modalAddQuestionToogle } from '../actions/generic_modals_handler_actions';
+import { modalAddQuestionToogle, editQuestion } from '../actions/generic_modals_handler_actions';
 import { NotificationContainer } from 'react-notifications';
 import Swal from 'sweetalert2';
 import ModalAddQuestion from '../modals/addQuestion';
@@ -27,10 +26,6 @@ class AddQuestion extends Component {
 			inputSearchText: '',
 			searchRegex: ''
 		}
-	}
-
-	componentWillMount(){
-		this.props.viewThemes();
 	}
 	
 	componentWillReceiveProps(){
@@ -114,7 +109,7 @@ class AddQuestion extends Component {
 					<td className={question.respostas[2].correta ? `correta` : ''}>{question.respostas[2].resposta}</td>
 					<td className={question.respostas[3].correta ? `correta` : ''}>{question.respostas[3].resposta}</td>
 					<td className='text-center'>
-					<Button title='Editar este Fluxo' className='listItemEdit fa fa-pencil-square fa-sm' color='link' onClick={() => { this.props.getStateList(question) }}></Button>
+					<Button title='Editar este Tema' className='listItemEdit fa fa-pencil-square fa-sm' color='link' onClick={() => { this.props.modalAddQuestionToogle(); this.props.editQuestion(question); }}></Button>
 					&nbsp;
 					<Button title='Remover este Fluxo' className='listItemRemove fa fa-trash fa-sm' color='link' onClick={() => this.removeFlowConfirmation(idx)}></Button>
 					</td>
@@ -196,7 +191,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-	return bindActionCreators({ viewQuestion, removeQuestion, modalAddQuestionToogle, viewThemes }, dispatch);
+	return bindActionCreators({ viewQuestion, removeQuestion, modalAddQuestionToogle, editQuestion }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddQuestion);

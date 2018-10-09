@@ -43,8 +43,31 @@ class ModalAddQuestion extends Component {
 
     componentDidUpdate(){
         if(Object.keys(this.props.selectedQuestion).length > 0 && this.state.question.pergunta === ''){
-            let question = this.props.selectedQuestion;
-            this.setState({ ...this.state, question: question, shouldClearInput: true });
+            let question = {
+                patrocinada: this.props.selectedQuestion.patrocinada,
+                tema: this.props.selectedQuestion.tema,
+                nivel: this.props.selectedQuestion.nivel,
+                pergunta: this.props.selectedQuestion.pergunta,
+                respostas: []
+            }
+            let alt1 = {
+                resposta: this.props.selectedQuestion.respostas[0].resposta,
+                correta: false
+            }
+            let alt2 = {
+                resposta: this.props.selectedQuestion.respostas[1].resposta,
+                correta: false
+
+            }
+            let alt3 = {
+                resposta: this.props.selectedQuestion.respostas[2].resposta,
+                correta: false
+            }
+            let alt4 = {
+                resposta: this.props.selectedQuestion.respostas[3].resposta,
+                correta: false
+            }
+            this.setState({ ...this.state, question: question, alt1: alt1, alt2: alt2, alt3: alt3, alt4: alt4, shouldClearInput: true });
         } else if((Object.keys(this.props.selectedQuestion).length === 0) && this.state.shouldClearInput){
             this.clearState();
         }
@@ -108,14 +131,16 @@ class ModalAddQuestion extends Component {
         question.respostas.push(state.alt3);
         question.respostas.push(state.alt4);
         
-        this.props.addQuestion(question);
-         
-        if(this.props.requestSucceeded){
-            NotificationManager.success('Pergunta Adicionada com Sucesso!', '', 3500);
-        } else if(this.props.requestFailed) {
-            NotificationManager.error('Não foi Possível adicionar a Pergunta', '', 3500);           
+        try {
+            if(Object.keys(this.props.selectedQuestion).length > 0){
+                this.props.updateQuestion(question, question.id);
+            } else {
+                this.props.addQuestion(question);
+            }
+            NotificationManager.success('Tema Adicionada com Sucesso!', '', 3500);
+        } catch (err) {
+            NotificationManager.error('Não foi Possível adicionar o Tema', '', 3500);
         }
-        this.clearState();
     }
 
     clearState(){
@@ -160,7 +185,7 @@ class ModalAddQuestion extends Component {
                                         <option value={true}>Sim</option>
                                         <option value={false}>Não</option>
                                     </Input>
-                                    <FormFeedback>tema é obrigatória</FormFeedback>
+                                    <FormFeedback>Obrigatório</FormFeedback>
                                 </Col>
                                 <br />
                                 <br />
@@ -174,7 +199,7 @@ class ModalAddQuestion extends Component {
                                         <option value={-1}>--Selecione--</option>
                                         {this.rendertema()}
                                     </Input>
-                                    <FormFeedback>tema é obrigatória</FormFeedback>
+                                    <FormFeedback>Tema é obrigatório</FormFeedback>
                                 </Col>
                                 <br />
                                 <br />

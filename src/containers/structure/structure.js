@@ -113,7 +113,7 @@ class Cadastro extends Component {
 					{this.renderLevel()}
 					{this.renderQuestion()}
 					<Row sm={12} hidden={this.state.isThemeSelected || this.state.isLevelSelected || this.state.isQuestionSelected}>
-						<div className="teste" onClick={() => {this.handleClick('tema')}}><i className="fa fa-tags fa-4 justify-content-center iconBox" aria-hidden="true"></i> <p className="labelIcon">Temas</p></div>
+						<div className="teste" onClick={() => {this.handleClick('tema')}}><i className="fa fa-tags fa-4 justify-content-center iconBox" aria-hidden="true"></i> <p className="labelIcon">Tema</p></div>
 						<div className="teste" onClick={() => {this.handleClick('nivel')}}><i className="fa fa-tasks fa-4 justify-content-center iconBox" aria-hidden="true"></i> <p className="labelIcon">Dificuldade</p></div>
 						<div className="teste" onClick={() => {this.handleClick('perguntas')}}><i className="fa fa-question fa-4 justify-content-center iconBox" aria-hidden="true"></i> <p className="labelIcon">Pergunta</p></div>
 					</Row>

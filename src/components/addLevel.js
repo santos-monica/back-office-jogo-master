@@ -15,9 +15,9 @@ class AddLevel extends Component {
         super(props);
         this.state = {
             level: {
-                nivel: '',
-                pontos: ''
+                nivel: ''
             }
+            
         };
     }
 
@@ -27,7 +27,6 @@ class AddLevel extends Component {
                 return (
                     <tr key={item.id}>
                     <td className="nivelTd">{item.nivel}</td>
-                    <td className="pontosTd">{item.pontos}</td>
                     <td className='text-center'>
                     <Button title='Editar este Tema' className='listItemEdit fa fa-pencil-square fa-sm' color='link' onClick={() => { this.props.modalAddLevelToogle(); this.props.editLevel(item); }}></Button>
                     &nbsp;
@@ -50,7 +49,6 @@ class AddLevel extends Component {
 					<thead className='theadProperties'>
 						<tr>
 							<th title='Tema'>TEXTO</th>
-							<th title='Cor'>PONTOS</th>
 							<th title='Acoes'>AÇÕES</th>
 						</tr>
 					</thead>

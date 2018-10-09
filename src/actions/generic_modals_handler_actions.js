@@ -4,6 +4,7 @@ export const MODAL_ADDLEVEL_TOOGLE = 'MODAL_ADDLEVEL_TOOGLE';
 export const EDIT_THEME = 'EDIT_THEME';
 export const EDIT_LEVEL = 'EDIT_LEVEL';
 export const EDIT_QUESTION = 'EDIT_QUESTION';
+export const SET_CLEAR_INPUT = 'SET_CLEAR_INPUT';
 
 export function modalAddQuestionToogle() {
     return {
@@ -41,6 +42,13 @@ export function editQuestion(question){
     return {
         type: EDIT_QUESTION,
         payload: question
+    }
+}
+
+export function setClearInput(value){
+    return {
+        type: SET_CLEAR_INPUT,
+        payload: value
     }
 }
 

@@ -19,23 +19,19 @@ const INITIAL_STATE = {
     nivel: [
         {
             id: 1,
-            nivel: "Fácil",
-            pontos: 5
+            nivel: "Fácil"
         },
         {
             id: 2,
-            nivel: "Intermediário",
-            pontos: 10
+            nivel: "Intermediário"
         },
         {
             id: 3,
-            nivel: "Difícil",
-            pontos: 20
+            nivel: "Difícil"
         },
         {
             id: 4,
-            nivel: "Mestre",
-            pontos: 40
+            nivel: "Mestre"
         }
     ],
     themeRequestSucceeded: false,
