@@ -15,7 +15,7 @@ const rootReducer = combineReducers({
 	adduser: ModalAddUser,
 	requesthandler: RequestHandler,
 	genericmodals: GenericModalsHandler,
-	structure: Structure,
+	structure: Structure
 });
 
 export default rootReducer;

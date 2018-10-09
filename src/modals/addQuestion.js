@@ -13,7 +13,7 @@ class ModalAddQuestion extends Component {
         super(props);
         this.state = {
             question: {
-                categoria: '',
+                tema: '',
                 nivel: '',
                 pergunta: '',
                 alt1: '',
@@ -33,43 +33,44 @@ class ModalAddQuestion extends Component {
 
     handleChange(event, key) {
 
-        let state = { ...this.state }
+        let question = { ...this.state.question }
         let campo = key;
         let valor = event.target.value;
 
         switch(campo){
-            case "categoria":
-                state.question.categoria = valor;
+            case "tema":
+                question.tema = valor;
                 break;
             case "nivel":
-                state.question.nivel = valor;
+                question.nivel = valor;
                 break;
             case "pergunta":
-                state.question.pergunta = valor;
+                question.pergunta = valor;
                 break;
             case "alt1":
-                state.question.alt1 = valor;
+                question.alt1 = valor;
                 break;
             case "alt2":
-                state.question.alt2 = valor;
+                question.alt2 = valor;
                 break;
             case "alt3":
-                state.question.alt3 = valor;
+                question.alt3 = valor;
                 break;
             case "alt4":
-                state.question.alt4 = valor;
+                question.alt4 = valor;
                 break;
-
+            default:
+                return;
 
         }
 
-        this.setState({ ...state })
+        this.setState({ ...this.state, question: question })
     }
 
     addQuestion() {
-        this.state.question = { ...this.state.question };
+        let question = { ...this.state.question };
         try {
-            this.props.addQuestion(this.state.question);
+            this.props.addQuestion(question);
             this.props.modalAddQuestionToogle();
             // this.cancelAddQuestion();
             NotificationManager.success('Pergunta Adicionada com Sucesso!', '', 3500);
@@ -81,11 +82,11 @@ class ModalAddQuestion extends Component {
         }
     }
 
-    renderCategoria(){
-        if(Object.keys(this.props.categorias).length > 0){
-        return this.props.categorias.map((categoria) => {
+    rendertema(){
+        if(Object.keys(this.props.temas).length > 0){
+        return this.props.temas.map((tema) => {
 				return (
-                    <option value={categoria} key={categoria}>{categoria} </option>
+                    <option value={tema.nome} key={tema.nome}>{tema.nome} </option>
                     )
 				})
         } 
@@ -93,9 +94,9 @@ class ModalAddQuestion extends Component {
 
     renderDificuldade(){
         if(Object.keys(this.props.nivel).length > 0){
-        return this.props.nivel.map((nivel) => {
+        return this.props.nivel.map((level) => {
 				return (
-                    <option value={nivel} key={nivel}>{nivel} </option>
+                    <option value={level.nivel} key={level.nivel}>{level.nivel} </option>
                     )
 				})
         } 
@@ -109,16 +110,16 @@ class ModalAddQuestion extends Component {
                     <ModalBody className='modalBody'>
                         <Form>
                             <FormGroup row className='justify-content-center'>
-                                <Label className="addQuestionLabel" for="categoria" sm={3}>Categoria</Label>
+                                <Label className="addQuestionLabel" for="tema" sm={3}>Tema</Label>
                                 <Col sm={7}>
-                                    <Input invalid={this.state.question.categoria ? false : true} 
-                                        value={this.state.question.categoria} 
+                                    <Input invalid={this.state.question.tema ? false : true} 
+                                        value={this.state.question.tema} 
                                         className='inputModal' type="select" 
-                                        onChange={(e) => this.handleChange(e, "categoria")} id="categoria">
+                                        onChange={(e) => this.handleChange(e, "tema")} id="tema">
                                         <option value={-1}>--Selecione--</option>
-                                        {this.renderCategoria()}
+                                        {this.rendertema()}
                                     </Input>
-                                    <FormFeedback>Categoria é obrigatória</FormFeedback>
+                                    <FormFeedback>tema é obrigatória</FormFeedback>
                                 </Col>
                                 <br />
                                 <br />
@@ -172,8 +173,8 @@ class ModalAddQuestion extends Component {
                         </Form>
                     </ModalBody>
                     <ModalFooter className='modalBody'>
-                        <Button className='btnCancel' onClick={() => { this.props.modalAddQuestionToogle(); this.cancelAddQuestion() }} color="secondary" ><i className="fa fa-times-circle" aria-hidden="true"></i> Cancelar</Button>
-                        <Button className='btnSave' disabled={this.state.question.categoria == '-1' || this.state.question.nivel == '-1' || this.state.question.pergunta == '' || this.state.question.alt1 == '' || this.state.question.alt2 == '' || this.state.question.alt3 == '' || this.state.question.alt4 == ''} onClick={this.addQuestion} color="secondary"><i className="fa fa-plus" aria-hidden="true"></i> Adicionar</Button>
+                        <Button className='btnCancel' onClick={() => { this.props.modalAddQuestionToogle(); }} color="secondary" ><i className="fa fa-times-circle" aria-hidden="true"></i> Cancelar</Button>
+                        <Button className='btnSave' disabled={this.state.question.tema === '-1' || this.state.question.nivel === '-1' || this.state.question.pergunta === '' || this.state.question.alt1 === '' || this.state.question.alt2 === '' || this.state.question.alt3 === '' || this.state.question.alt4 === ''} onClick={this.addQuestion} color="secondary"><i className="fa fa-plus" aria-hidden="true"></i> Adicionar</Button>
                     </ModalFooter>
                 </Modal>
                 <NotificationContainer />
@@ -185,7 +186,7 @@ class ModalAddQuestion extends Component {
 function mapStateToProps(state) {
     return {
         modal: state.genericmodals,
-        categorias: state.structure.categorias,
+        temas: state.structure.temas,
 		nivel: state.structure.nivel
     }
 }

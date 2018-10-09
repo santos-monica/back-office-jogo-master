@@ -1,52 +1,41 @@
-// import { MENU_OPTION_SELECTED  } from '../actions/menu_actions';
-// import { INTEGRATIONS, FLOWS, POPS } from '../helpers/constants';
+import { MENU_OPTION_SELECTED  } from '../actions/menu_actions';
+import { CADASTRO, HOME } from '../helpers/constants';
 
-// let MenuOptions = [FLOWS, INTEGRATIONS, POPS];
+let MenuOptions = [HOME, CADASTRO];
 
-// const INITIAL_STATE = {
+const INITIAL_STATE = {
 
-// 	all: MenuOptions,
-// 	selectedOption: MenuOptions[0],
-// 	isintegration_active: false,
-// 	isflow_active: true,
-// 	isdiscovery_active: false 
-// };
+	all: MenuOptions,
+	selectedOption: MenuOptions[0],
+	ishome_active: true,
+	isstructure_active: false 
+};
 
-// export default function (state = INITIAL_STATE, action) {
-// 	switch (action.type) {
-// 		case MENU_OPTION_SELECTED:
+export default function (state = INITIAL_STATE, action) {
+	switch (action.type) {
+		case MENU_OPTION_SELECTED:
 
-// 			if (action.payload == "flows") {
+			if (action.payload === "questions") {
 
-// 				return {
-// 					...state, isflow_active: true, isintegration_active: false, isdiscovery_active: false,
-// 					selectedOption: action.payload
+				return {
+					...state, ishome_active: true, isstructure_active: false,
+					selectedOption: action.payload
 
-// 				}
-// 			}
+				}
+			}
 
-// 			if (action.payload == "integrations") {
-// 				return {
+			if (action.payload === "cadastro") {
+				return {
 
-// 					...state, isflow_active: false, isintegration_active: true, isdiscovery_active: false,
-// 					selectedOption: action.payload
+					...state, ishome_active: false, isstructure_active: true,
+					selectedOption: action.payload
 
 
-// 				}
+				}
 
-// 			}
+			}
 
-// 			if (action.payload == "pops") {
-// 				return {
-
-// 					...state, isflow_active: false, isintegration_active: false, isdiscovery_active: true,
-// 					selectedOption: action.payload
-
-// 				}
-
-// 			}
-
-// 			return { ...state, selectedOption: action.payload };
-// 	}
-// 	return state;
-// }
+			return { ...state, selectedOption: action.payload };
+	}
+	return state;
+}

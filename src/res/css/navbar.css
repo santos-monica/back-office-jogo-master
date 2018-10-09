@@ -4,31 +4,31 @@
 }
 
 .navbarIndex.navbar.navbar-expand-md.navbar-light>.navbarText.navbar-brand {
-    color: #c9c7c7;
+    color: #c7cfbc;
     font-size: 26px;
     cursor: pointer;
     font-family: OpenSansBoldBold;
 }
 
 .nav-item .navItemsColor.nav-link {
-    color: #c9c7c7;
+    color: #c7cfbc;
     font-size: 23px;
     cursor: pointer;
     font-family: OpenSansLight;
 }
 
 .ml-auto.navbar-nav.nav-pills>li.nav-item>a.navItemsColor.nav-link {
-    color: #c9c7c7;
+    color: #c7cfbc;
 }
 
 .ml-auto.navbar-nav.nav-pills>li.nav-item>a.navItemsColor.nav-link.active {
     border: none;
     background: transparent;
-    color: #2d4c89;
+    color: #3D9970;
 }
 
 .ml-auto.navbar-nav.nav-pills>li.nav-item>a.navItemsColor.nav-link:hover {
-    color: #2d4c89;
+    color: #3D9970;
 }
 
 .navbarSpanTitle {
@@ -36,7 +36,7 @@
 }
 
 .navbarSpanTitle:hover {
-    color: #2d4c89;
+    color: #3D9970;
 }
 
 .spanUserSettings {

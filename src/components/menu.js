@@ -3,7 +3,7 @@ import { Navbar, NavbarBrand, Nav, NavItem, NavLink, Dropdown, DropdownToggle, D
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { selectMenuOption } from '../actions/menu_actions';
-import { FLOWS } from '../helpers/constants';
+import { HOME, CADASTRO } from '../helpers/constants';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 import { logOut } from '../actions/login_actions';
@@ -40,13 +40,13 @@ class Menu extends Component {
 			<NavItem>
 				<NavLink
 					className={this.props.isflow_active ? 'navItemsColor' : 'navItemsColor'} active={this.props.isflow_active}
-					onClick={() => this.props.selectMenuOption(FLOWS)}><i className="fa fa-question" aria-hidden="true"></i> PERGUNTAS
+					onClick={() => this.props.selectMenuOption(HOME)}><i className="fa fa-home" aria-hidden="true"></i> HOME
 				</NavLink>
 			</NavItem>
 			<NavItem>
 				<NavLink
 					className={this.props.isflow_active ? 'navItemsColor' : 'navItemsColor'} active={this.props.isflow_active}
-					onClick={() => this.props.selectMenuOption(FLOWS)}><i className="fa fa-question" aria-hidden="true"></i> PERGUNTAS
+					onClick={() => this.props.selectMenuOption(CADASTRO)}><i className="fa fa-pencil-square-o" aria-hidden="true"></i> CADASTRO
 				</NavLink>
 			</NavItem>
 			

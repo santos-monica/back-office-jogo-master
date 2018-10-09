@@ -12,12 +12,16 @@ import './res/css/buttons.css';
 import 'react-circular-progressbar/dist/styles.css';
 import './res/css/progress.css';
 import './res/css/inputs.css';
+import './res/css/structure.css';
 import './res/css/fonts.css';
 import './res/css/modal.css';
 import './res/css/animate.css';
 import './res/css/loginpage.css';
 import './res/css/pagenotfound.css';
 import './res/css/custom_alert.css';
+import './res/css/theme.css';
+import './res/css/level.css';
+import 'react-color-picker/index.css'
 import store from './store'
 // import initAppData from './helpers/init'
 
