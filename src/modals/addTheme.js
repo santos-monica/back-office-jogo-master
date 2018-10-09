@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Button, Col, Form, FormGroup, Input, Label, Modal, ModalBody, ModalFooter, ModalHeader, FormFeedback } from 'reactstrap';
 import { bindActionCreators } from 'redux';
-import { addTheme, updateTheme } from '../actions/theme_actions';
+import { addThemeLocally, updateTheme } from '../actions/theme_actions';
 import arts from '../res/img/icons/arts.png';
 import books from '../res/img/icons/books.png';
 import food from '../res/img/icons/food.png';
@@ -97,7 +97,7 @@ class ModalAddTheme extends Component {
             if(Object.keys(this.props.selectedTheme).length > 0){
                 this.props.updateTheme(theme, theme.id);
             } else {
-                this.props.addTheme(theme);
+                this.props.addThemeLocally(theme);
             }
             NotificationManager.success('Tema Adicionada com Sucesso!', '', 3500);
         } catch (err) {
@@ -131,7 +131,7 @@ class ModalAddTheme extends Component {
                     <ModalBody className='modalBody'>
                         <Form>
                         <FormGroup row className='justify-content-center'>
-                            <Label className="addThemeLabel" for="tema" sm={3}>Tema</Label>
+                            <Label className="LocallyLabel" for="tema" sm={3}>Tema</Label>
                             <Col sm={9}>
                                 <Input invalid={this.state.tema.nome ? false : true} 
                                     value={this.state.tema.nome} 
@@ -193,7 +193,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ modalAddThemeToogle, addTheme, updateTheme }, dispatch)
+    return bindActionCreators({ modalAddThemeToogle, addThemeLocally, updateTheme }, dispatch)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ModalAddTheme)

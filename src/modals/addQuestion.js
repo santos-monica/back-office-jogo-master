@@ -33,7 +33,7 @@ class ModalAddQuestion extends Component {
 
     handleChange(event, key) {
 
-        let question = { ...this.state }
+        let question = { ...this.state.question }
         let campo = key;
         let valor = event.target.value;
 
@@ -64,7 +64,7 @@ class ModalAddQuestion extends Component {
 
         }
 
-        this.setState({ ...this.state, ...question })
+        this.setState({ ...this.state, question: question })
     }
 
     addQuestion() {
@@ -86,7 +86,7 @@ class ModalAddQuestion extends Component {
         if(Object.keys(this.props.temas).length > 0){
         return this.props.temas.map((tema) => {
 				return (
-                    <option value={tema} key={tema}>{tema} </option>
+                    <option value={tema.nome} key={tema.nome}>{tema.nome} </option>
                     )
 				})
         } 
@@ -94,9 +94,9 @@ class ModalAddQuestion extends Component {
 
     renderDificuldade(){
         if(Object.keys(this.props.nivel).length > 0){
-        return this.props.nivel.map((nivel) => {
+        return this.props.nivel.map((level) => {
 				return (
-                    <option value={nivel} key={nivel}>{nivel} </option>
+                    <option value={level.nivel} key={level.nivel}>{level.nivel} </option>
                     )
 				})
         } 
@@ -110,7 +110,7 @@ class ModalAddQuestion extends Component {
                     <ModalBody className='modalBody'>
                         <Form>
                             <FormGroup row className='justify-content-center'>
-                                <Label className="addQuestionLabel" for="tema" sm={3}>tema</Label>
+                                <Label className="addQuestionLabel" for="tema" sm={3}>Tema</Label>
                                 <Col sm={7}>
                                     <Input invalid={this.state.question.tema ? false : true} 
                                         value={this.state.question.tema} 
@@ -173,7 +173,7 @@ class ModalAddQuestion extends Component {
                         </Form>
                     </ModalBody>
                     <ModalFooter className='modalBody'>
-                        <Button className='btnCancel' onClick={() => { this.props.modalAddQuestionToogle(); this.cancelAddQuestion() }} color="secondary" ><i className="fa fa-times-circle" aria-hidden="true"></i> Cancelar</Button>
+                        <Button className='btnCancel' onClick={() => { this.props.modalAddQuestionToogle(); }} color="secondary" ><i className="fa fa-times-circle" aria-hidden="true"></i> Cancelar</Button>
                         <Button className='btnSave' disabled={this.state.question.tema === '-1' || this.state.question.nivel === '-1' || this.state.question.pergunta === '' || this.state.question.alt1 === '' || this.state.question.alt2 === '' || this.state.question.alt3 === '' || this.state.question.alt4 === ''} onClick={this.addQuestion} color="secondary"><i className="fa fa-plus" aria-hidden="true"></i> Adicionar</Button>
                     </ModalFooter>
                 </Modal>

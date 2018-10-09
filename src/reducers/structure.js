@@ -1,4 +1,4 @@
-import { ADD_THEME, POPULATE_THEMES } from '../actions/theme_actions';
+import { ADD_THEME, ADD_THEME_LOCALLY, POPULATE_THEMES, THEME_REQUEST_FAILED } from '../actions/theme_actions';
 import { ADD_LEVEL } from '../actions/level_actions';
 
 const INITIAL_STATE = { 
@@ -37,12 +37,20 @@ const INITIAL_STATE = {
             nivel: "Mestre",
             pontos: 40
         }
-    ]
+    ],
+    themeRequestSucceeded: false,
+    themeRequestFailed: false
 };
 
 export default function (state = INITIAL_STATE, action) {
     switch (action.type) {
         case ADD_THEME: {
+            let temas = state.temas;
+            temas.push(action.payload);
+            return { ...state, temas: temas }
+        }
+
+        case ADD_THEME_LOCALLY: {
             let temas = state.temas;
             temas.push(action.payload);
             return { ...state, temas: temas }
@@ -57,6 +65,10 @@ export default function (state = INITIAL_STATE, action) {
         case POPULATE_THEMES: {
             let themes = action.payload;
             return { ...state, temas: themes }
+        }
+
+        case THEME_REQUEST_FAILED: {
+            return { ...state, themeRequestFailed: true, themeRequestSucceeded: false }
         }
 
         default:

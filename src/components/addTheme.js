@@ -14,7 +14,7 @@ import science from '../res/img/icons/science.png';
 import sports from '../res/img/icons/sports.png';
 import theater from '../res/img/icons/theater.png';
 import ModalAddTheme from '../modals/addTheme';
-import { addTheme } from '../actions/theme_actions';
+import { addThemeLocally } from '../actions/theme_actions';
 
 
 class AddTheme extends Component {
@@ -106,7 +106,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ modalAddThemeToogle, addTheme, editTheme }, dispatch)
+    return bindActionCreators({ modalAddThemeToogle, addThemeLocally, editTheme }, dispatch)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddTheme)
