@@ -12,11 +12,8 @@ export const QUESTION_REQUEST_SUCCEEDED = 'QUESTION_REQUEST_SUCCEEDED';
 
 export function viewQuestions(){
     return(dispatch) => {
-<<<<<<< HEAD
         axios.get(`http://localhost:64803/api/pergunta`)
-=======
-        axios.get(`http://localhost:3000/api/perguntas`)
->>>>>>> 5dff8b24c51876f8dbd5e0f397b412d5a3f91a6a
+
             .then((response) => {
                 console.log(response.data);
                 dispatch(populateQuestions(response.data));

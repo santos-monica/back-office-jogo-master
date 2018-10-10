@@ -45,7 +45,6 @@ class ModalAddQuestion extends Component {
     }
 
     componentDidUpdate(){
-<<<<<<< HEAD
         if(Object.keys(this.props.selectedQuestion).length > 0 && this.state.pergunta.pergunta === ''){
             let pergunta = {
                 Patrocinada: this.props.selectedQuestion.Patrocinada,
@@ -76,34 +75,7 @@ class ModalAddQuestion extends Component {
                 IdPergunta: this.props.selectedQuestion.pergunta.Id
             }
             this.setState({ ...this.state, pergunta: pergunta, alt1: alt1, alt2: alt2, alt3: alt3, alt4: alt4, shouldClearInput: true });
-=======
-        if(Object.keys(this.props.selectedQuestion).length > 0 && this.state.question.pergunta === ''){
-            let question = {
-                patrocinada: this.props.selectedQuestion.patrocinada,
-                tema: this.props.selectedQuestion.tema,
-                nivel: this.props.selectedQuestion.nivel,
-                pergunta: this.props.selectedQuestion.pergunta,
-                respostas: []
-            }
-            let alt1 = {
-                resposta: this.props.selectedQuestion.respostas[0].resposta,
-                correta: false
-            }
-            let alt2 = {
-                resposta: this.props.selectedQuestion.respostas[1].resposta,
-                correta: false
 
-            }
-            let alt3 = {
-                resposta: this.props.selectedQuestion.respostas[2].resposta,
-                correta: false
-            }
-            let alt4 = {
-                resposta: this.props.selectedQuestion.respostas[3].resposta,
-                correta: false
-            }
-            this.setState({ ...this.state, question: question, alt1: alt1, alt2: alt2, alt3: alt3, alt4: alt4, shouldClearInput: true });
->>>>>>> 5dff8b24c51876f8dbd5e0f397b412d5a3f91a6a
         } else if((Object.keys(this.props.selectedQuestion).length === 0) && this.state.shouldClearInput){
             this.clearState();
         }
@@ -174,7 +146,6 @@ class ModalAddQuestion extends Component {
         
         try {
             if(Object.keys(this.props.selectedQuestion).length > 0){
-<<<<<<< HEAD
                 this.props.updateQuestion(question, question.pergunta.Id);
             } else {
                 this.props.addQuestion(question);
@@ -182,15 +153,7 @@ class ModalAddQuestion extends Component {
             NotificationManager.success('Pergunta Adicionada com Sucesso!', '', 3500);
         } catch (err) {
             NotificationManager.error('Não foi Possível adicionar o Pergunta', '', 3500);
-=======
-                this.props.updateQuestion(question, question.id);
-            } else {
-                this.props.addQuestion(question);
-            }
-            NotificationManager.success('Tema Adicionada com Sucesso!', '', 3500);
-        } catch (err) {
-            NotificationManager.error('Não foi Possível adicionar o Tema', '', 3500);
->>>>>>> 5dff8b24c51876f8dbd5e0f397b412d5a3f91a6a
+
         }
     }
 
