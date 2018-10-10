@@ -205,7 +205,11 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
+<<<<<<< HEAD
 	return bindActionCreators({ viewQuestion, removeQuestion, modalAddQuestionToogle, viewThemes, viewQuestions, viewLevels }, dispatch);
+=======
+	return bindActionCreators({ viewQuestion, removeQuestion, modalAddQuestionToogle, viewThemes, viewQuestions }, dispatch);
+>>>>>>> 5dff8b24c51876f8dbd5e0f397b412d5a3f91a6a
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(QuestionsList);

@@ -23,9 +23,15 @@ class ModalAddTheme extends Component {
         super(props);
         this.state = {
             tema: {
+<<<<<<< HEAD
                 Tema: '',
                 Cor: '',
                 Icone: ''
+=======
+                tema: '',
+                cor: '',
+                icone: ''
+>>>>>>> 5dff8b24c51876f8dbd5e0f397b412d5a3f91a6a
             },
             icones: [ 
                 {"arts": arts}, 
@@ -56,9 +62,15 @@ class ModalAddTheme extends Component {
 
     clearState(){
         let tema = {
+<<<<<<< HEAD
             Tema: '',
             Cor: '',
             Icone: ''
+=======
+            tema: '',
+            cor: '',
+            icone: ''
+>>>>>>> 5dff8b24c51876f8dbd5e0f397b412d5a3f91a6a
         };
         this.setState({ ...this.state, tema: tema });
         this.props.setClearInput(false);
@@ -66,7 +78,11 @@ class ModalAddTheme extends Component {
 
     handleChangeComplete = (color) => {
         let tema = this.state.tema;
+<<<<<<< HEAD
         tema.Cor = color.hex;
+=======
+        tema.cor = color.hex;
+>>>>>>> 5dff8b24c51876f8dbd5e0f397b412d5a3f91a6a
         this.setState({ ...this.state, tema: tema });
     };
 
@@ -78,7 +94,11 @@ class ModalAddTheme extends Component {
 
         switch(campo){
             case "tema":
+<<<<<<< HEAD
                 state.tema.Tema = valor;
+=======
+                state.tema.tema = valor;
+>>>>>>> 5dff8b24c51876f8dbd5e0f397b412d5a3f91a6a
                 break;
             case "cor":
                 state.tema.Cor = valor;
@@ -197,7 +217,11 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
+<<<<<<< HEAD
     return bindActionCreators({ modalAddThemeToogle, addTheme, updateTheme, setClearInput }, dispatch)
+=======
+    return bindActionCreators({ modalAddThemeToogle, addThemeLocally, updateTheme, setClearInput }, dispatch)
+>>>>>>> 5dff8b24c51876f8dbd5e0f397b412d5a3f91a6a
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ModalAddTheme)

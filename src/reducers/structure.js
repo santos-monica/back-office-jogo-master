@@ -7,8 +7,43 @@ import {
 import { ADD_LEVEL, POPULATE_LEVELS, LEVELS_REQUEST_FAILED } from '../actions/level_actions';
 
 const INITIAL_STATE = { 
+<<<<<<< HEAD
     temas: [],
     nivel: [],
+=======
+    temas: [
+        {
+            id: 1,
+            tema: "Filmes",
+            cor: "#3e3e3e",
+            icone: 'movies'
+        },
+        {
+            id: 2,
+            tema: "Livros",
+            cor: "#f0f0f0",
+            icone: 'books'
+        }
+    ],
+    nivel: [
+        {
+            id: 1,
+            nivel: "Fácil"
+        },
+        {
+            id: 2,
+            nivel: "Intermediário"
+        },
+        {
+            id: 3,
+            nivel: "Difícil"
+        },
+        {
+            id: 4,
+            nivel: "Mestre"
+        }
+    ],
+>>>>>>> 5dff8b24c51876f8dbd5e0f397b412d5a3f91a6a
     themeRequestSucceeded: false,
     themeRequestFailed: false
 };

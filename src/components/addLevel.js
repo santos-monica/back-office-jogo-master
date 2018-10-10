@@ -30,6 +30,7 @@ class AddLevel extends Component {
                 return (
                     <tr key={item.Id}>
                     <td className="nivelTd">{item.Nivel}</td>
+
                     <td className='text-center'>
                     <Button title='Editar este Tema' className='listItemEdit fa fa-pencil-square fa-sm' color='link' onClick={() => { this.props.modalAddLevelToogle(); this.props.editLevel(item); }}></Button>
                     &nbsp;

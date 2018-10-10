@@ -35,6 +35,7 @@ class ModalAddLevel extends Component {
             Nivel: ''
         };
         this.setState({ ...this.state, level: level });
+
         this.props.setClearInput(false);
     }
 
@@ -47,6 +48,7 @@ class ModalAddLevel extends Component {
         switch(campo){
             case "nivel":
                 state.level.Nivel = valor;
+
                 break;
             default:
                 break;
