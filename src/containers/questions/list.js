@@ -3,9 +3,10 @@ import { Button, Table, Input, FormGroup, Row } from 'reactstrap';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { viewQuestion, removeQuestion } from '../../actions/questions_actions';
+import { viewLevels } from '../../actions/level_actions';
 import { viewThemes } from '../../actions/theme_actions';
+import { viewQuestions } from '../../actions/questions_actions';
 import { modalAddQuestionToogle } from '../../actions/generic_modals_handler_actions';
-import ModalAddFlow from '../../modals/addQuestion';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 
@@ -30,6 +31,9 @@ class QuestionsList extends Component {
 
 	componentWillMount(){
 		this.props.viewThemes();
+		this.props.viewQuestions();
+		console.log(this.props.questions);
+		this.props.viewLevels();
 	}
 	
 	componentWillReceiveProps(){
@@ -201,7 +205,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-	return bindActionCreators({ viewQuestion, removeQuestion, modalAddQuestionToogle, viewThemes }, dispatch);
+	return bindActionCreators({ viewQuestion, removeQuestion, modalAddQuestionToogle, viewThemes, viewQuestions, viewLevels }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(QuestionsList);

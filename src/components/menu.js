@@ -37,12 +37,12 @@ class Menu extends Component {
 			<Navbar className='navbarIndex' light expand="md">
 			<NavbarBrand style={{ cursor: 'auto' }} className='navbarText'> <img src={puzzle} alt='logo' className='puzzleNavBrand' /></NavbarBrand>
 			<Nav pills className="ml-auto" navbar>
-			<NavItem>
+			{/* <NavItem>
 				<NavLink
 					className={this.props.isflow_active ? 'navItemsColor' : 'navItemsColor'} active={this.props.isflow_active}
 					onClick={() => this.props.selectMenuOption(HOME)}><i className="fa fa-home" aria-hidden="true"></i> HOME
 				</NavLink>
-			</NavItem>
+			</NavItem> */}
 			<NavItem>
 				<NavLink
 					className={this.props.isflow_active ? 'navItemsColor' : 'navItemsColor'} active={this.props.isflow_active}
@@ -56,7 +56,7 @@ class Menu extends Component {
 			&nbsp;
 			</NavLink>
 			</NavItem>
-			<NavItem>
+			{/* <NavItem>
 			<Dropdown direction="left" isOpen={this.state.toggleUserSettings} toggle={this.toggleUserSettingsOptions}>
 			<DropdownToggle tag="a">
 			<i title='Configurações' onClick={() => this.toggleUserSettingsOptions} className="fa fa-cog spanUserSettings" aria-hidden="true"></i>
@@ -66,7 +66,7 @@ class Menu extends Component {
 			<DropdownItem onClick={() => this.props.openModalAddUser()} className='dropDownUserSettings'><i className="fa fa-user-plus spanDropItem" aria-hidden="true"></i> Novo Usuário</DropdownItem>
 			</DropdownMenu>
 			</Dropdown>
-			</NavItem>
+			</NavItem> */}
 			</Nav>
 			</Navbar>
 			)

@@ -6,9 +6,10 @@ let MenuOptions = [HOME, CADASTRO];
 const INITIAL_STATE = {
 
 	all: MenuOptions,
-	selectedOption: MenuOptions[0],
-	ishome_active: true,
-	isstructure_active: false 
+	selectedOption: "cadastro",
+	// selectedOption: MenuOptions[0],
+	ishome_active: false,
+	isstructure_active: true 
 };
 
 export default function (state = INITIAL_STATE, action) {

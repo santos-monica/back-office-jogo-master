@@ -1,60 +1,8 @@
-import { VIEW_QUESTION, ADD_QUESTION_LOCALLY, QUESTION_REQUEST_FAILED, QUESTION_REQUEST_SUCCEEDED } from '../actions/questions_actions';
+import { VIEW_QUESTION, ADD_QUESTION_LOCALLY, QUESTION_REQUEST_FAILED, QUESTION_REQUEST_SUCCEEDED, POPULATE_QUESTIONS } from '../actions/questions_actions';
 
 const INITIAL_STATE = { 
     requestSucceeded: false,
-    requestFailed: false,
-    questions: [
-        {
-            id: 1,
-            tema: 1,
-            nivel: 1,
-            patrocinada: false,
-            pergunta: 'Qual o nome da irmã mais velha da Leilah?',
-            respostas: [
-                {
-                    resposta: 'Laura',
-                    correta: true
-                },
-                {
-                    resposta: 'Louise',
-                    correta: false
-                },
-                {
-                    resposta: 'Luane',
-                    correta: false
-                },
-                {
-                    resposta: 'Joana',
-                    correta: false
-                }
-            ],
-        },
-        {
-            id: 2,
-            tema: 2,
-            nivel: 3,
-            patrocinada: true,
-            pergunta: 'Outra pergunta?',
-            respostas: [
-                {
-                    resposta: 'um',
-                    correta: false
-                },
-                {
-                    resposta: 'dois',
-                    correta: false
-                },
-                {
-                    resposta: 'tres',
-                    correta: true
-                },
-                {
-                    resposta: 'quatro',
-                    correta: false
-                }
-            ],
-        }
-    ] 
+    requestFailed: false 
 };
 
 export default function (state = INITIAL_STATE, action) {
@@ -76,6 +24,11 @@ export default function (state = INITIAL_STATE, action) {
 
         case QUESTION_REQUEST_SUCCEEDED: {
             return { ...state, requestFailed: false, requestSucceeded: true };
+        }
+
+        case POPULATE_QUESTIONS: {
+            let questions = action.payload;
+            return { ...state, questions: questions }
         }
 
         default:

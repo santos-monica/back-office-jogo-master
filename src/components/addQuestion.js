@@ -3,8 +3,7 @@ import { Button, Table, Input, FormGroup, Row } from 'reactstrap';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { viewQuestion, removeQuestion } from '../actions/questions_actions';
-import { viewThemes } from '../actions/theme_actions';
-import { modalAddQuestionToogle } from '../actions/generic_modals_handler_actions';
+import { modalAddQuestionToogle, editQuestion } from '../actions/generic_modals_handler_actions';
 import { NotificationContainer } from 'react-notifications';
 import Swal from 'sweetalert2';
 import ModalAddQuestion from '../modals/addQuestion';
@@ -18,7 +17,6 @@ class AddQuestion extends Component {
 		
 		super(props)
 		
-		this.removeFlowConfirmation = this.removeFlowConfirmation.bind(this);
 		this.handleInputSearchText = this.handleInputSearchText.bind(this);
 		this.clearSearch = this.clearSearch.bind(this);
 		
@@ -28,55 +26,18 @@ class AddQuestion extends Component {
 			searchRegex: ''
 		}
 	}
-
-	componentWillMount(){
-		this.props.viewThemes();
-	}
 	
 	componentWillReceiveProps(){
 		
 		return this.clearSearch()
 	}
 
-	
-	removeFlowConfirmation(idx) {
-		
-		MySwal.fire({
-			title: <p>Deseja Realmente Excluir esta Pergunta?</p>,
-			showCancelButton: true,
-			showConfirmButton: true,
-			cancelButtonText: 'Cancelar',
-			cancelButtonClass: 'btn btnCancelar',
-			confirmButtonText: 'Sim',
-			confirmButtonClass: 'btn btnConfirmar',
-			buttonsStyling: false,
-			customClass: 'alertFont',
-			reverseButtons: 'true',
-			type: 'warning',
-			allowOutsideClick: true,
-		}).then((result) => {
-			if (result.value) {
-				MySwal.fire({
-					title: <p>Pergunta excluída com Sucesso!</p>,
-					showConfirmButton: true,
-					confirmButtonText: 'OK',
-					confirmButtonClass: 'btn btnConfirmar',
-					buttonsStyling: false,
-					customClass: 'alertFont',
-					type: 'success',
-					allowOutsideClick: false
-				})
-				this.props.removeFlow(idx)
-			}
-		})
-	}
-
 	renderTema(temaId){
 		if (Object.keys(this.props.temas).length > 0) {
 			return Object.entries(this.props.temas)
 				.map((tema) => {
-					if(tema[1].id == temaId){
-						return <td key={temaId}>{tema[1].tema}</td>
+					if(tema[1].Id == temaId){
+						return <td key={temaId}>{tema[1].Tema}</td>
 					} else {
 						return;
 					}
@@ -88,8 +49,8 @@ class AddQuestion extends Component {
 		if (Object.keys(this.props.niveis).length > 0) {
 			return Object.entries(this.props.niveis)
 				.map((nivel) => {
-					if(nivel[1].id == nivelId){
-						return <td key={nivelId}>{nivel[1].nivel}</td>
+					if(nivel[1].Id == nivelId){
+						return <td key={nivelId}>{nivel[1].Nivel}</td>
 					} else {
 						return;
 					}
@@ -102,21 +63,19 @@ class AddQuestion extends Component {
 			return Object.entries(this.props.questions)
 			.map(([idx, question]) => {
 				return (
-					// <tr key={question.id}>
-					<tr key={question.id}>
-					{/* <tr key={question.id} hidden={!this.filterQuestions(this.state.searchRegex, [question.tema, question.nivel, question.pergunta, question.respostas.toString()])}> */}
-					{this.renderTema(question.tema)}
-					{this.renderNivel(question.nivel)}
-					<td>{question.pergunta}</td>
-					<td>{question.patrocinada ? 'Sim' : 'Não'}</td>
-					<td className={question.respostas[0].correta ? `correta` : ''}>{question.respostas[0].resposta}</td>
-					<td className={question.respostas[1].correta ? `correta` : ''}>{question.respostas[1].resposta}</td>
-					<td className={question.respostas[2].correta ? `correta` : ''}>{question.respostas[2].resposta}</td>
-					<td className={question.respostas[3].correta ? `correta` : ''}>{question.respostas[3].resposta}</td>
+					<tr key={question.pergunta.Id}>
+					{this.renderTema(question.pergunta.IdTema)}
+					{this.renderNivel(question.pergunta.IdNivel)}
+					<td>{question.pergunta.Pergunta}</td>
+					<td>{question.pergunta.Patrocinada ? 'Sim' : 'Não'}</td>
+					<td className={question.respostas[0].Correta ? `correta` : ''}>{question.respostas[0].Resposta}</td>
+					<td className={question.respostas[1].Correta ? `correta` : ''}>{question.respostas[1].Resposta}</td>
+					<td className={question.respostas[2].Correta ? `correta` : ''}>{question.respostas[2].Resposta}</td>
+					<td className={question.respostas[3].Correta ? `correta` : ''}>{question.respostas[3].Resposta}</td>
 					<td className='text-center'>
-					<Button title='Editar este Fluxo' className='listItemEdit fa fa-pencil-square fa-sm' color='link' onClick={() => { this.props.getStateList(question) }}></Button>
+					<Button title='Editar este Tema' className='listItemEdit fa fa-pencil-square fa-sm' color='link' onClick={() => { this.props.modalAddQuestionToogle(); this.props.editQuestion(question); }}></Button>
 					&nbsp;
-					<Button title='Remover este Fluxo' className='listItemRemove fa fa-trash fa-sm' color='link' onClick={() => this.removeFlowConfirmation(idx)}></Button>
+					<Button title='Remover este Fluxo' className='listItemRemove fa fa-trash fa-sm' color='link' onClick={() => this.props.removeQuestion(question.pergunta.Id)}></Button>
 					</td>
 					</tr>
 					)
@@ -196,7 +155,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-	return bindActionCreators({ viewQuestion, removeQuestion, modalAddQuestionToogle, viewThemes }, dispatch);
+	return bindActionCreators({ viewQuestion, removeQuestion, modalAddQuestionToogle, editQuestion, removeQuestion }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddQuestion);

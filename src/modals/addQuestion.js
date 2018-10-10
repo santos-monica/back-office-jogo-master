@@ -12,28 +12,31 @@ class ModalAddQuestion extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            question: {
-                patrocinada: -1,
-                tema: '',
-                nivel: '',
-                pergunta: '', 
-                respostas: []
+            pergunta: {
+                Patrocinada: -1,
+                IdTema: '',
+                IdNivel: '',
+                Pergunta: '', 
             },
             alt1: {
-                resposta: '',
-                correta: false
+                Resposta: '',
+                Correta: false,
+                IdPergunta: null
             },
             alt2: {
-                resposta: '',
-                correta: false
+                Resposta: '',
+                Correta: false,
+                IdPergunta: null
             },
             alt3: {
-                resposta: '',
-                correta: false
+                Resposta: '',
+                Correta: false,
+                IdPergunta: null
             },
             alt4: {
-                resposta: '',
-                correta: false
+                Resposta: '',
+                Correta: false,
+                IdPergunta: null
             },
             correta: ''
         }
@@ -42,9 +45,36 @@ class ModalAddQuestion extends Component {
     }
 
     componentDidUpdate(){
-        if(Object.keys(this.props.selectedQuestion).length > 0 && this.state.question.pergunta === ''){
-            let question = this.props.selectedQuestion;
-            this.setState({ ...this.state, question: question, shouldClearInput: true });
+        if(Object.keys(this.props.selectedQuestion).length > 0 && this.state.pergunta.pergunta === ''){
+            let pergunta = {
+                Patrocinada: this.props.selectedQuestion.Patrocinada,
+                IdTema: this.props.selectedQuestion.IdTema,
+                IdNivel: this.props.selectedQuestion.IdNivel,
+                Pergunta: this.props.selectedQuestion.Pergunta
+            }
+            let alt1 = {
+                Resposta: this.props.selectedQuestion.respostas[0].Resposta,
+                Correta: false,
+                IdPergunta: this.props.selectedQuestion.pergunta.Id
+
+            }
+            let alt2 = {
+                Resposta: this.props.selectedQuestion.respostas[1].Resposta,
+                Correta: false,
+                IdPergunta: this.props.selectedQuestion.pergunta.Id
+
+            }
+            let alt3 = {
+                Resposta: this.props.selectedQuestion.respostas[2].Resposta,
+                Correta: false,
+                IdPergunta: this.props.selectedQuestion.pergunta.Id
+            }
+            let alt4 = {
+                Resposta: this.props.selectedQuestion.respostas[3].Resposta,
+                Correta: false,
+                IdPergunta: this.props.selectedQuestion.pergunta.Id
+            }
+            this.setState({ ...this.state, pergunta: pergunta, alt1: alt1, alt2: alt2, alt3: alt3, alt4: alt4, shouldClearInput: true });
         } else if((Object.keys(this.props.selectedQuestion).length === 0) && this.state.shouldClearInput){
             this.clearState();
         }
@@ -58,28 +88,28 @@ class ModalAddQuestion extends Component {
 
         switch(campo){
             case "patrocinio":
-                state.question.patrocinada = valor;
+                state.pergunta.Patrocinada = valor;
                 break;
             case "tema":
-                state.question.tema = valor;
+                state.pergunta.IdTema = valor;
                 break;
             case "nivel":
-                state.question.nivel = valor;
+                state.pergunta.IdNivel = valor;
                 break;
             case "pergunta":
-                state.question.pergunta = valor;
+                state.pergunta.Pergunta = valor;
                 break;
             case "alt1":
-                state.alt1.resposta = valor;
+                state.alt1.Resposta = valor;
                 break;
             case "alt2":
-                state.alt2.resposta = valor;
+                state.alt2.Resposta = valor;
                 break;
             case "alt3":
-                state.alt3.resposta = valor;
+                state.alt3.Resposta = valor;
                 break;
             case "alt4":
-                state.alt4.resposta = valor;
+                state.alt4.Resposta = valor;
                 break;
             case "correta":
                 state.correta = valor;
@@ -94,39 +124,46 @@ class ModalAddQuestion extends Component {
     addQuestion() {
         let state = { ...this.state };
         if(state.correta === 'alt1'){
-            state.alt1.correta = true;
+            state.alt1.Correta = true;
         } else if(state.correta === 'alt2'){
-            state.alt2.correta = true;
+            state.alt2.Correta = true;
         } else if(state.correta === 'alt3'){
-            state.alt3.correta = true;
+            state.alt3.Correta = true;
         } else {
-            state.alt4.correta = true;
+            state.alt4.Correta = true;
         }
-        let question = state.question;
-        question.respostas.push(state.alt1);
-        question.respostas.push(state.alt2);
-        question.respostas.push(state.alt3);
-        question.respostas.push(state.alt4);
+        let respostas = [];
+        respostas.push(state.alt1);
+        respostas.push(state.alt2);
+        respostas.push(state.alt3);
+        respostas.push(state.alt4);
+
+        let question = {
+            pergunta: this.state.pergunta,
+            respostas: respostas
+        }
         
-        this.props.addQuestion(question);
-         
-        if(this.props.requestSucceeded){
+        try {
+            if(Object.keys(this.props.selectedQuestion).length > 0){
+                this.props.updateQuestion(question, question.pergunta.Id);
+            } else {
+                this.props.addQuestion(question);
+            }
             NotificationManager.success('Pergunta Adicionada com Sucesso!', '', 3500);
-        } else if(this.props.requestFailed) {
-            NotificationManager.error('Não foi Possível adicionar a Pergunta', '', 3500);           
+        } catch (err) {
+            NotificationManager.error('Não foi Possível adicionar o Pergunta', '', 3500);
         }
-        this.clearState();
     }
 
     clearState(){
         // this.setState({ INITIAL_STATE });
     }
 
-    rendertema(){
+    renderTema(){
         if(Object.keys(this.props.temas).length > 0){
         return this.props.temas.map((tema) => {
 				return (
-                    <option value={tema.id} key={tema.id}>{tema.tema} </option>
+                    <option value={tema.Id} key={tema.Id}>{tema.Tema} </option>
                     )
 				})
         } 
@@ -136,7 +173,7 @@ class ModalAddQuestion extends Component {
         if(Object.keys(this.props.nivel).length > 0){
         return this.props.nivel.map((level) => {
 				return (
-                    <option value={level.id} key={level.id}>{level.nivel} </option>
+                    <option value={level.Id} key={level.Id}>{level.Nivel} </option>
                     )
 				})
         } 
@@ -152,36 +189,36 @@ class ModalAddQuestion extends Component {
                             <FormGroup row className='justify-content-center'>
                                 <Label className="addQuestionLabel" for="patrocinio" sm={3}>Patrocinada?</Label>
                                 <Col sm={7}>
-                                    <Input invalid={this.state.question.patrocinada != -1 ? false : true} 
-                                        value={this.state.question.patrocinada} 
+                                    <Input invalid={this.state.pergunta.Patrocinada != -1 ? false : true} 
+                                        value={this.state.pergunta.Patrocinada} 
                                         className='inputModal' type="select" 
                                         onChange={(e) => this.handleChange(e, "patrocinio")} id="patrocinio">
                                         <option value={-1}>--Selecione--</option>
                                         <option value={true}>Sim</option>
                                         <option value={false}>Não</option>
                                     </Input>
-                                    <FormFeedback>tema é obrigatória</FormFeedback>
+                                    <FormFeedback>Obrigatório</FormFeedback>
                                 </Col>
                                 <br />
                                 <br />
                                 
                                 <Label className="addQuestionLabel" for="tema" sm={3}>Tema</Label>
                                 <Col sm={7}>
-                                    <Input invalid={this.state.question.tema ? false : true} 
-                                        value={this.state.question.tema} 
+                                    <Input invalid={this.state.pergunta.IdTema ? false : true} 
+                                        value={this.state.pergunta.IdTema} 
                                         className='inputModal' type="select" 
                                         onChange={(e) => this.handleChange(e, "tema")} id="tema">
                                         <option value={-1}>--Selecione--</option>
-                                        {this.rendertema()}
+                                        {this.renderTema()}
                                     </Input>
-                                    <FormFeedback>tema é obrigatória</FormFeedback>
+                                    <FormFeedback>Tema é obrigatório</FormFeedback>
                                 </Col>
                                 <br />
                                 <br />
                                 <Label className="addQuestionLabel" for="nivel" sm={3}>Dificuldade</Label>
                                 <Col sm={7}>
-                                    <Input invalid={this.state.question.nivel ? false : true} 
-                                        value={this.state.question.nivel} 
+                                    <Input invalid={this.state.pergunta.IdNivel ? false : true} 
+                                        value={this.state.pergunta.IdNivel} 
                                         className='inputModal' type="select" 
                                         onChange={(e) => this.handleChange(e, "nivel")} id="nivel">
                                         <option value={-1}>--Selecione--</option>
@@ -193,35 +230,35 @@ class ModalAddQuestion extends Component {
                                 <br />
                                 <Label className="addQuestionLabel" for="pergunta" sm={3}>Pergunta</Label>
                                 <Col sm={7}>
-                                    <Input invalid={this.state.question.pergunta ? false : true} value={this.state.question.pergunta} className='inputModal' type="text" onChange={(e) => this.handleChange(e, "pergunta")} id="pergunta" placeholder="Pergunta" />
+                                    <Input invalid={this.state.pergunta.Pergunta ? false : true} value={this.state.pergunta.Pergunta} className='inputModal' type="text" onChange={(e) => this.handleChange(e, "pergunta")} id="pergunta" placeholder="Pergunta" />
                                     <FormFeedback>Pergunta obrigatória</FormFeedback>
                                 </Col>
                                 <br />
                                 <br />
                                 <Label className="addQuestionLabel" for="alt1" sm={3}>Alternativa 1</Label>
                                 <Col sm={7}>
-                                    <Input invalid={this.state.alt1.resposta ? false : true} value={this.state.alt1.resposta} className='inputModal' type="text" onChange={(e) => this.handleChange(e, "alt1")} id="alt1" placeholder="Alternativa 1" />
+                                    <Input invalid={this.state.alt1.Resposta ? false : true} value={this.state.alt1.Resposta} className='inputModal' type="text" onChange={(e) => this.handleChange(e, "alt1")} id="alt1" placeholder="Alternativa 1" />
                                     <FormFeedback>Obrigatório</FormFeedback>
                                 </Col>
                                 <br />
                                 <br />
                                 <Label className="addQuestionLabel" for="alt2" sm={3}>Alternativa 2</Label>
                                 <Col sm={7}>
-                                    <Input invalid={this.state.alt2.resposta ? false : true} value={this.state.alt2.resposta} className='inputModal' type="text" onChange={(e) => this.handleChange(e, "alt2")} id="alt2" placeholder="Alternativa 2" />
+                                    <Input invalid={this.state.alt2.Resposta ? false : true} value={this.state.alt2.Resposta} className='inputModal' type="text" onChange={(e) => this.handleChange(e, "alt2")} id="alt2" placeholder="Alternativa 2" />
                                     <FormFeedback>Obrigatório</FormFeedback>
                                 </Col>
                                 <br />
                                 <br />
                                 <Label className="addQuestionLabel" for="alt3" sm={3}>Alternativa 3</Label>
                                 <Col sm={7}>
-                                    <Input invalid={this.state.alt3.resposta ? false : true} value={this.state.alt3.resposta} className='inputModal' type="text" onChange={(e) => this.handleChange(e, "alt3")} id="alt3" placeholder="Alternativa 3" />
+                                    <Input invalid={this.state.alt3.Resposta ? false : true} value={this.state.alt3.Resposta} className='inputModal' type="text" onChange={(e) => this.handleChange(e, "alt3")} id="alt3" placeholder="Alternativa 3" />
                                     <FormFeedback>Obrigatório</FormFeedback>
                                 </Col>
                                 <br />
                                 <br />
                                 <Label className="addQuestionLabel" for="alt4" sm={3}>Alternativa 4</Label>
                                 <Col sm={7}>
-                                    <Input invalid={this.state.alt4.resposta ? false : true} value={this.state.alt4.resposta} className='inputModal' type="text" onChange={(e) => this.handleChange(e, "alt4")} id="alt4" placeholder="Alternativa 4" />
+                                    <Input invalid={this.state.alt4.Resposta ? false : true} value={this.state.alt4.Resposta} className='inputModal' type="text" onChange={(e) => this.handleChange(e, "alt4")} id="alt4" placeholder="Alternativa 4" />
                                     <FormFeedback>Obrigatório</FormFeedback>
                                 </Col>
                                 <br />
@@ -246,7 +283,7 @@ class ModalAddQuestion extends Component {
                     </ModalBody>
                     <ModalFooter className='modalBody'>
                         <Button className='btnCancel' onClick={() => { this.props.modalAddQuestionToogle(); this.clearState();}} color="secondary" ><i className="fa fa-times-circle" aria-hidden="true"></i> Cancelar</Button>
-                        <Button className='btnSave' disabled={this.state.question.pergunta === '' || this.state.question.patrocinada === -1 || this.state.question.tema === '' || this.state.question.nivel === ''} 
+                        <Button className='btnSave' disabled={this.state.pergunta.Pergunta === '' || this.state.pergunta.Patrocinada === -1 || this.state.pergunta.IdTema === '' || this.state.pergunta.IdNivel === ''} 
                             onClick={() => {this.addQuestion(); this.clearState(); this.props.modalAddQuestionToogle()}} color="secondary"><i className={`fa ${Object.keys(this.props.selectedQuestion).length > 0 ? 'fa-refresh' : 'fa-plus'}`} aria-hidden="true"></i> {Object.keys(this.props.selectedQuestion).length > 0 ? 'Salvar' : 'Adicionar'}</Button>
                     </ModalFooter>
                 </Modal>

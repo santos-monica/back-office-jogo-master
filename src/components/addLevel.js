@@ -6,7 +6,10 @@ import { modalAddLevelToogle, editLevel } from '../actions/generic_modals_handle
 import 'react-notifications/lib/notifications.css';
 import { NotificationContainer } from 'react-notifications';
 import ModalAddLevel from '../modals/addLevel';
-import { addLevel } from '../actions/level_actions';
+import {
+    addLevel,
+    removeLevel
+} from '../actions/level_actions';
 
 
 class AddLevel extends Component {
@@ -15,9 +18,9 @@ class AddLevel extends Component {
         super(props);
         this.state = {
             level: {
-                nivel: '',
-                pontos: ''
+                Nivel: ''
             }
+            
         };
     }
 
@@ -25,13 +28,12 @@ class AddLevel extends Component {
         if(Object.keys(this.props.nivel).length > 0){
             return this.props.nivel.map((item) => {
                 return (
-                    <tr key={item.id}>
-                    <td className="nivelTd">{item.nivel}</td>
-                    <td className="pontosTd">{item.pontos}</td>
+                    <tr key={item.Id}>
+                    <td className="nivelTd">{item.Nivel}</td>
                     <td className='text-center'>
                     <Button title='Editar este Tema' className='listItemEdit fa fa-pencil-square fa-sm' color='link' onClick={() => { this.props.modalAddLevelToogle(); this.props.editLevel(item); }}></Button>
                     &nbsp;
-                    <Button title='Remover este Tema' className='listItemRemove fa fa-trash fa-sm' color='link' onClick={() => this.removeFlowConfirmation(item.id)}></Button>
+                    <Button title='Remover este Tema' className='listItemRemove fa fa-trash fa-sm' color='link' onClick={() => this.props.removeLevel(item.Id)}></Button>
                     </td>
                     </tr>
                 )
@@ -50,7 +52,6 @@ class AddLevel extends Component {
 					<thead className='theadProperties'>
 						<tr>
 							<th title='Tema'>TEXTO</th>
-							<th title='Cor'>PONTOS</th>
 							<th title='Acoes'>AÇÕES</th>
 						</tr>
 					</thead>
@@ -77,7 +78,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ modalAddLevelToogle, addLevel, editLevel }, dispatch)
+    return bindActionCreators({ modalAddLevelToogle, addLevel, editLevel, removeLevel }, dispatch)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddLevel)

@@ -14,7 +14,7 @@ import science from '../res/img/icons/science.png';
 import sports from '../res/img/icons/sports.png';
 import theater from '../res/img/icons/theater.png';
 import ModalAddTheme from '../modals/addTheme';
-import { addThemeLocally } from '../actions/theme_actions';
+import { addThemeLocally, removeTheme } from '../actions/theme_actions';
 
 
 class AddTheme extends Component {
@@ -23,9 +23,9 @@ class AddTheme extends Component {
         super(props);
         this.state = {
             tema: {
-                nome: '',
-                cor: '',
-                icone: ''
+                Tema: '',
+                Cor: '',
+                Icone: ''
             }
         };
     }
@@ -34,7 +34,7 @@ class AddTheme extends Component {
         if(Object.keys(this.props.temas).length > 0){
             return this.props.temas.map((tema) => {
                 let icon;
-                switch(tema.icone){
+                switch(tema.Icone){
                     case "arts": icon = arts;
                         break;
                     case "books": icon = books;
@@ -54,14 +54,14 @@ class AddTheme extends Component {
                     default: break;
                 }
                 return (
-                    <tr key={tema.id}>
-                    <td className="temaTd">{tema.tema}</td>
-                    <td className="colorTd" style={{backgroundColor: tema.cor}}>{tema.cor}</td>
+                    <tr key={tema.Id}>
+                    <td className="temaTd">{tema.Tema}</td>
+                    <td className="colorTd" style={{backgroundColor: tema.Cor}}>{tema.Cor}</td>
                     <td className="iconTd"><img src={icon} alt="icons" className="themeIcon"></img></td>
                     <td className='text-center'>
                     <Button title='Editar este Tema' className='listItemEdit fa fa-pencil-square fa-sm' color='link' onClick={() => { this.props.modalAddThemeToogle(); this.props.editTheme(tema); }}></Button>
                     &nbsp;
-                    <Button title='Remover este Tema' className='listItemRemove fa fa-trash fa-sm' color='link' onClick={() => this.removeFlowConfirmation(tema.id)}></Button>
+                    <Button title='Remover este Tema' className='listItemRemove fa fa-trash fa-sm' color='link' onClick={() => this.props.removeTheme(tema.Id)}></Button>
                     </td>
                     </tr>
                 )
@@ -106,7 +106,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ modalAddThemeToogle, addThemeLocally, editTheme }, dispatch)
+    return bindActionCreators({ modalAddThemeToogle, addThemeLocally, editTheme, removeTheme }, dispatch)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddTheme)

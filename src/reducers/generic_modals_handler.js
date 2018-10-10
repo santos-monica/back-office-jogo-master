@@ -1,4 +1,4 @@
-import { MODAL_ADDQUESTION_TOOGLE, MODAL_ADDTHEME_TOOGLE, MODAL_ADDLEVEL_TOOGLE, EDIT_THEME, EDIT_LEVEL, EDIT_QUESTION } from '../actions/generic_modals_handler_actions';
+import { MODAL_ADDQUESTION_TOOGLE, MODAL_ADDTHEME_TOOGLE, MODAL_ADDLEVEL_TOOGLE, EDIT_THEME, EDIT_LEVEL, EDIT_QUESTION, SET_CLEAR_INPUT } from '../actions/generic_modals_handler_actions';
 
 const INITIAL_STATE = {
     ismodaladdquestionopen: false,
@@ -6,7 +6,8 @@ const INITIAL_STATE = {
     ismodaladdlevelopen: false,
     themeSelected: {},
     levelSelected: {},
-    questionSelected: {}
+    questionSelected: {},
+    shouldClearInput: false
 }
 
 export default function (state = INITIAL_STATE, action) {
@@ -38,6 +39,11 @@ export default function (state = INITIAL_STATE, action) {
         case EDIT_QUESTION: {
             let selected = action.payload;
             return { ...state, questionSelected: selected };
+        }
+
+        case SET_CLEAR_INPUT: {
+            let value = action.payload;
+            return { ...state, shouldClearInput: value };
         }
 
         default:
